@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #08090d;
+  --foreground: #ededef;
+  --panel-bg: rgba(13, 15, 23, 0.75);
+  --folder-border: rgba(255, 255, 255, 0.08);
+  --folder-highlight: rgba(192, 132, 252, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--background);
+  min-height: 100vh;
+  position: relative;
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(13, 15, 23, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-subtle {
+  background: rgba(18, 21, 32, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-folder-body {
+  background: linear-gradient(135deg, rgba(20, 24, 38, 0.85) 0%, rgba(10, 12, 18, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.5) inset;
+}
+
+.glass-folder-tab {
+  background: linear-gradient(180deg, rgba(30, 36, 56, 0.9) 0%, rgba(18, 22, 34, 0.95) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom Subtle Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(8, 9, 13, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(192, 132, 252, 0.4);
+}
+
+/* Selection Color */
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: #ffffff;
+}
+
+/* Subtle glow utility */
+.glow-purple {
+  box-shadow: 0 0 40px -10px rgba(168, 85, 247, 0.2);
+}
+
+.glow-purple-sm {
+  box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.25);
+}
+
+/* Tab clip path & folder curves */
+.folder-tab-shape {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.folder-card-shape {
+  border-radius: 16px;
+}
+
+/* Ambient Radial Background Light */
+.bg-ambient-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
