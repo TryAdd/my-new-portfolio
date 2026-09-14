@@ -175,9 +175,10 @@ export function FolderExpanded({
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleClose}
-                  className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group"
+                  className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group cursor-pointer"
                   title="Close (ESC)"
                   data-cursor="CLOSE"
+                  data-cursor-color="rose"
                 >
                   <X className="w-2 h-2 text-red-950 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
@@ -200,7 +201,7 @@ export function FolderExpanded({
             {/* Right: Quick Tab Switcher & Close button */}
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Folder Selector / Quick Jump on Desktop */}
-              <div className="hidden lg:flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+              <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
                 {allFolders.map((f) => {
                   const fTheme = getFolderThemeClasses(f.id);
                   const fColor = f.id === "about" ? "blue" : f.id === "projects" ? "emerald" : f.id === "experience" ? "amber" : f.id === "skills" ? "violet" : f.id === "design-lab" ? "rose" : "sky";
@@ -224,17 +225,6 @@ export function FolderExpanded({
                   );
                 })}
               </div>
-
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                data-cursor="CLOSE [ESC]"
-                data-cursor-color="rose"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-neutral-300 hover:text-white font-mono text-xs tracking-wider transition-all"
-              >
-                <X className="w-4 h-4" />
-                <span className="hidden sm:inline">CLOSE [ESC]</span>
-              </button>
             </div>
           </div>
 
