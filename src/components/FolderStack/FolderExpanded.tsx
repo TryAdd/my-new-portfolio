@@ -144,19 +144,19 @@ export function FolderExpanded({
   const getShortTabLabel = (f: FolderData) => {
     switch (f.id) {
       case "about":
-        return "ABOUT ME";
+        return "ABOUT";
       case "projects":
         return "PROJECTS";
       case "experience":
-        return "EXPERIENCE";
+        return "EXP";
       case "skills":
-        return "SKILLS & TOOLS";
+        return "SKILLS";
       case "design-lab":
-        return "CERTIFICATIONS";
+        return "CERTS";
       case "contact":
-        return "CONTACT ME";
+        return "CONTACT";
       default:
-        return f.name.split(" ").slice(0, 3).join(" ").toUpperCase();
+        return f.name.split(" ")[0].toUpperCase();
     }
   };
 
