@@ -141,6 +141,25 @@ export function FolderExpanded({
     onClose();
   };
 
+  const getShortTabLabel = (f: FolderData) => {
+    switch (f.id) {
+      case "about":
+        return "ABOUT ME";
+      case "projects":
+        return "PROJECTS";
+      case "experience":
+        return "EXPERIENCE";
+      case "skills":
+        return "SKILLS & TOOLS";
+      case "design-lab":
+        return "CERTIFICATIONS";
+      case "contact":
+        return "CONTACT ME";
+      default:
+        return f.name.split(" ").slice(0, 3).join(" ").toUpperCase();
+    }
+  };
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto">
@@ -169,7 +188,7 @@ export function FolderExpanded({
           className={`relative w-full max-w-6xl max-h-[92vh] flex flex-col rounded-2xl sm:rounded-3xl bg-gradient-to-b ${theme.cardGradient} border border-white/20 ${theme.shadow} overflow-hidden`}
         >
           {/* Top Window Bar (Mac OS Finder / Digital Archive aesthetics) */}
-          <div className="flex items-center justify-between px-5 sm:px-8 py-4 bg-neutral-900/90 border-b border-white/10 backdrop-blur-md shrink-0">
+          <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-8 py-3.5 sm:py-4 bg-neutral-900/90 border-b border-white/10 backdrop-blur-md shrink-0">
             {/* Left: Window Traffic Lights & Directory Path */}
             <div className="flex items-center gap-3 sm:gap-4">
               <div className="flex items-center gap-2">
@@ -187,7 +206,7 @@ export function FolderExpanded({
               </div>
 
               {/* Breadcrumb path */}
-              <div className="flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-neutral-400 pl-3 border-l border-white/10">
+              <div className="hidden sm:flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-neutral-400 pl-3 border-l border-white/10">
                 <span className="text-neutral-500">workspace</span>
                 <span className="text-neutral-600">/</span>
                 <span className="text-neutral-300">folders</span>
@@ -198,33 +217,31 @@ export function FolderExpanded({
               </div>
             </div>
 
-            {/* Right: Quick Tab Switcher & Close button */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              {/* Folder Selector / Quick Jump on Desktop */}
-              <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-                {allFolders.map((f) => {
-                  const fTheme = getFolderThemeClasses(f.id);
-                  const fColor = f.id === "about" ? "blue" : f.id === "projects" ? "emerald" : f.id === "experience" ? "amber" : f.id === "skills" ? "violet" : f.id === "design-lab" ? "rose" : "sky";
-                  return (
-                    <button
-                      key={f.id}
-                      onClick={() => {
-                        soundEffects.playTabHover();
-                        onNavigateFolder(f.id);
-                      }}
-                      data-cursor={`SWITCH TO ${f.name.toUpperCase()}`}
-                      data-cursor-color={fColor}
-                      className={`px-2.5 py-1 rounded-lg text-[10px] font-mono tracking-wider transition-all ${
-                        f.id === folder.id
-                          ? `${fTheme.bgActive} font-semibold`
-                          : "text-neutral-400 hover:text-white"
-                      }`}
-                    >
-                      {f.number}
-                    </button>
-                  );
-                })}
-              </div>
+            {/* Right: Quick Tab Switcher */}
+            <div className="flex items-center gap-1 overflow-x-auto max-w-full p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+              {allFolders.map((f) => {
+                const fTheme = getFolderThemeClasses(f.id);
+                const fColor = f.id === "about" ? "blue" : f.id === "projects" ? "emerald" : f.id === "experience" ? "amber" : f.id === "skills" ? "violet" : f.id === "design-lab" ? "rose" : "sky";
+                const label = getShortTabLabel(f);
+                return (
+                  <button
+                    key={f.id}
+                    onClick={() => {
+                      soundEffects.playTabHover();
+                      onNavigateFolder(f.id);
+                    }}
+                    data-cursor={`SWITCH TO ${label}`}
+                    data-cursor-color={fColor}
+                    className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-[11px] font-mono tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                      f.id === folder.id
+                        ? `${fTheme.bgActive} font-semibold shadow-sm`
+                        : "text-neutral-400 hover:text-white hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
