@@ -30,7 +30,7 @@ export function ExperienceContent() {
       <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
         <div className="flex items-center gap-2">
           <Badge variant="glow" size="xs">
-            <Briefcase className="w-3 h-3" /> CAREER ARCHIVE // 2020—2026
+            <Briefcase className="w-3 h-3" /> CAREER ARCHIVE // GLOBAL ITS GROUP
           </Badge>
         </div>
         <span className="text-xs font-mono text-neutral-500">
@@ -48,7 +48,7 @@ export function ExperienceContent() {
               key={exp.id}
               className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                 isExpanded
-                  ? "bg-neutral-900/90 border-purple-400/40 shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
+                  ? "bg-neutral-900/90 border-blue-400/40 shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
                   : "bg-white/[0.02] hover:bg-white/[0.04] border-white/[0.08]"
               }`}
             >
@@ -59,16 +59,16 @@ export function ExperienceContent() {
                 data-cursor="INSPECT"
               >
                 <div className="flex items-start sm:items-center gap-4">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-purple-500/10 border border-purple-400/20 text-purple-300 font-mono text-xs font-bold">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/20 text-blue-300 font-mono text-xs font-bold">
                     0{index + 1}
                   </div>
 
                   <div>
-                    <h3 className="text-lg sm:text-xl font-serif text-white font-normal group-hover:text-purple-200">
+                    <h3 className="text-lg sm:text-xl font-serif text-white font-normal group-hover:text-blue-200">
                       {exp.role}
                     </h3>
                     <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-neutral-400 mt-1">
-                      <span className="text-purple-300 font-medium">{exp.company}</span>
+                      <span className="text-blue-300 font-medium">{exp.company}</span>
                       <span>•</span>
                       <span>{exp.location}</span>
                     </div>
@@ -81,7 +81,7 @@ export function ExperienceContent() {
                   </Badge>
                   <div
                     className={`flex h-7 w-7 items-center justify-center rounded-full bg-white/5 text-neutral-400 transition-transform duration-300 ${
-                      isExpanded ? "rotate-90 text-purple-300 bg-purple-500/20" : ""
+                      isExpanded ? "rotate-90 text-blue-300 bg-blue-500/20" : ""
                     }`}
                   >
                     <ChevronRight className="w-4 h-4" />
@@ -108,13 +108,13 @@ export function ExperienceContent() {
                       {/* Responsibilities */}
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-400 font-semibold">
-                          <Terminal className="w-3.5 h-3.5 text-purple-400" />
+                          <Terminal className="w-3.5 h-3.5 text-blue-400" />
                           <span>CORE RESPONSIBILITIES</span>
                         </div>
                         <ul className="space-y-2">
                           {exp.responsibilities.map((resp, i) => (
                             <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-neutral-300 font-light">
-                              <span className="text-purple-400 font-mono mt-0.5">›</span>
+                              <span className="text-blue-400 font-mono mt-0.5">›</span>
                               <span>{resp}</span>
                             </li>
                           ))}
@@ -125,7 +125,7 @@ export function ExperienceContent() {
                       <div className="space-y-3">
                         <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-neutral-400 font-semibold">
                           <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>NOTABLE IMPACT & ACHIEVEMENTS</span>
+                          <span>NOTABLE IMPACT &amp; ACHIEVEMENTS</span>
                         </div>
                         <ul className="space-y-2">
                           {exp.achievements.map((ach, i) => (

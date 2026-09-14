@@ -45,19 +45,19 @@ export function FolderItem({
   const getFolderIcon = (id: string) => {
     switch (id) {
       case "about":
-        return <Folder className="w-4 h-4 text-purple-400" />;
+        return <Folder className="w-4 h-4 text-blue-400" />;
       case "projects":
-        return <FolderGit2 className="w-4 h-4 text-indigo-400" />;
+        return <FolderGit2 className="w-4 h-4 text-sky-400" />;
       case "experience":
-        return <Briefcase className="w-4 h-4 text-purple-300" />;
+        return <Briefcase className="w-4 h-4 text-blue-300" />;
       case "skills":
-        return <Terminal className="w-4 h-4 text-purple-400" />;
+        return <Terminal className="w-4 h-4 text-blue-400" />;
       case "design-lab":
-        return <Sparkles className="w-4 h-4 text-pink-400" />;
+        return <Sparkles className="w-4 h-4 text-cyan-400" />;
       case "contact":
-        return <Mail className="w-4 h-4 text-violet-300" />;
+        return <Mail className="w-4 h-4 text-blue-300" />;
       default:
-        return <Layers className="w-4 h-4 text-purple-400" />;
+        return <Layers className="w-4 h-4 text-blue-400" />;
     }
   };
 
@@ -107,7 +107,7 @@ export function FolderItem({
       >
         {/* Physical Folder Tab (Sticks out at the top of each folder) */}
         <div
-          className="relative inline-flex items-center gap-3 px-6 py-3 rounded-t-xl bg-gradient-to-t from-[#141826] to-[#20273d] border-t border-l border-r border-white/20 shadow-[-2px_-4px_16px_rgba(0,0,0,0.4)] group-hover:border-purple-400/60 transition-colors"
+          className="relative inline-flex items-center gap-3 px-6 py-3 rounded-t-xl bg-gradient-to-t from-[#101726] to-[#1a2640] border-t border-l border-r border-white/20 shadow-[-2px_-4px_16px_rgba(0,0,0,0.4)] group-hover:border-blue-400/60 transition-colors"
           style={{
             marginLeft: `clamp(1rem, ${tabOffset}, 70%)`,
             transform: "translateY(1px)",
@@ -115,7 +115,7 @@ export function FolderItem({
         >
           <div className="flex items-center gap-2">
             {getFolderIcon(folder.id)}
-            <span className="font-mono text-xs font-bold text-white tracking-widest group-hover:text-purple-200 transition-colors">
+            <span className="font-mono text-xs font-bold text-white tracking-widest group-hover:text-blue-200 transition-colors">
               {folder.number} // {folder.name}
             </span>
           </div>
@@ -126,7 +126,7 @@ export function FolderItem({
         </div>
 
         {/* Physical Folder Body */}
-        <div className="relative w-full rounded-2xl bg-gradient-to-b from-[#111420] via-[#0d0f17] to-[#090b10] border border-white/15 group-hover:border-purple-400/50 p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_1px_0_rgba(255,255,255,0.1)_inset] transition-all duration-300 overflow-hidden">
+        <div className="relative w-full rounded-2xl bg-gradient-to-b from-[#0e1422] via-[#0a0d17] to-[#06080d] border border-white/15 group-hover:border-blue-400/50 p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_1px_0_rgba(255,255,255,0.1)_inset] transition-all duration-300 overflow-hidden">
           {/* Subtle Ambient Radial Highlight on Folder Corner */}
           <div
             className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity"
@@ -146,7 +146,7 @@ export function FolderItem({
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-white group-hover:text-purple-100 transition-colors">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-white group-hover:text-blue-100 transition-colors">
                 {folder.name}
               </h2>
 
@@ -164,11 +164,11 @@ export function FolderItem({
                 </div>
                 <div>
                   <span className="text-neutral-500">UPDATED: </span>
-                  <span className="text-purple-300">{folder.updated}</span>
+                  <span className="text-blue-300">{folder.updated}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] group-hover:bg-purple-500/20 border border-white/10 group-hover:border-purple-400/40 text-neutral-300 group-hover:text-purple-200 font-mono text-xs tracking-wider transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)]">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] group-hover:bg-blue-500/20 border border-white/10 group-hover:border-blue-400/40 text-neutral-300 group-hover:text-blue-200 font-mono text-xs tracking-wider transition-all shadow-[0_0_15px_rgba(0,0,0,0.3)]">
                 <span>OPEN FOLDER</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>

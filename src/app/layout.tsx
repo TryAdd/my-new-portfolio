@@ -11,19 +11,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Ahmed Hisham — Portfolio OS | Mobile Developer & Designer",
+  title: "Ahmed Hisham — Software Integration & Middleware Engineer",
   description:
-    "A dark, sophisticated, editorial-style personal portfolio simulating an interactive desktop workspace and physical file folder system. Mobile Developer & Designer based in Bahrain.",
+    "Software Integration and Middleware Engineer with 5+ years of hands-on experience architecting resilient enterprise APIs, data synchronizers, and distributed middleware layers.",
   keywords: [
     "Ahmed Hisham",
-    "Mobile Developer",
-    "Designer",
+    "Software Integration Engineer",
+    "Middleware Developer",
+    "Enterprise Systems Specialist",
+    "Microsoft Dynamics 365",
+    "D365 Integrations",
+    "ObjectBox Sync",
     "Bahrain",
-    "Flutter",
-    "React Native",
-    "Portfolio OS",
-    "Interactive Portfolio",
-    "UI/UX Design",
+    "Power Automate",
   ],
   authors: [{ name: "Ahmed Hisham" }],
 };
@@ -47,7 +47,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-[#08090d] text-neutral-100 min-h-screen antialiased selection:bg-purple-500/30 selection:text-white relative">
+      <body className="bg-[#08090d] text-neutral-100 min-h-screen antialiased selection:bg-blue-500/30 selection:text-white relative">
         <NoiseOverlay />
         <CustomCursor />
         {children}

@@ -3,7 +3,7 @@ export interface Project {
   title: string;
   year: string;
   type: string;
-  category: "Mobile" | "Web & System" | "Design & UI";
+  category: "Enterprise ERP & HR" | "Real Estate & Billing" | "Supply Chain & ERP" | "InsurTech" | "FinTech & Wealth" | "Enterprise Asset Ops" | "Backend & Full-Stack";
   summary: string;
   description: string;
   featuredImage: string;
@@ -13,6 +13,7 @@ export interface Project {
   platform: string;
   metrics?: { label: string; value: string }[];
   highlights?: string[];
+  endpoints?: string[];
   links?: { label: string; url: string; icon?: string }[];
 }
 
@@ -30,6 +31,18 @@ export interface Experience {
   technologies: string[];
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  category: string;
+}
+
+export interface EducationItem {
+  program: string;
+  institution: string;
+  date: string;
+}
+
 export interface SkillCategory {
   id: string;
   title: string;
@@ -42,17 +55,6 @@ export interface SkillCategory {
     years?: string;
     description?: string;
   }[];
-}
-
-export interface DesignLabItem {
-  id: string;
-  title: string;
-  category: string;
-  year: string;
-  description: string;
-  previewUrl: string;
-  aspectRatio?: string;
-  tags: string[];
 }
 
 export interface PortfolioData {
@@ -70,11 +72,21 @@ export interface PortfolioData {
     shortBio: string;
     editorialQuote: string;
     aboutBioParagraphs: string[];
+    keyAchievements: string[];
     specializations: string[];
     interests: string[];
     avatarImage: string;
     contactEmail: string;
-    phone?: string;
+    phone: string;
+    certifications: Certification[];
+    education: EducationItem[];
+    community: string[];
+    reference: {
+      name: string;
+      title: string;
+      company: string;
+      phone: string;
+    };
     socials: {
       platform: string;
       handle: string;
@@ -96,75 +108,99 @@ export interface PortfolioData {
   projects: Project[];
   experiences: Experience[];
   skills: SkillCategory[];
-  designLab: DesignLabItem[];
 }
 
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Ahmed Hisham",
     monogram: "AH",
-    role: "Mobile Developer & Designer",
-    secondaryRole: "Creative Technologist & UI Engineer",
-    location: "Manama, Bahrain",
+    role: "Software Integration Engineer • Middleware & API Developer",
+    secondaryRole: "Enterprise Systems Specialist",
+    location: "Kingdom of Bahrain",
     country: "Bahrain",
     timezone: "Asia/Bahrain",
-    currentStatus: "Available for Q3/Q4 2026 Projects",
+    currentStatus: "Software Integration & Applications Developer @ Global ITS Group",
     statusType: "available",
     copyrightYear: "©2026",
-    shortBio: "Creative developer building digital experiences, visual systems, and playful ideas for the real world.",
-    editorialQuote: "Bridging the tactile intuition of physical design with the precision of mobile architecture and interactive engineering.",
+    shortBio: "Software Integration and Middleware Engineer with 5+ years of hands-on experience architecting resilient enterprise APIs, data synchronizers, and distributed middleware layers.",
+    editorialQuote: "Specialized in Microsoft Dynamics 365 (D365) REST integrations, custom ETL pipelines, message orchestration, and offline-to-online bi-directional synchronization engines using ObjectBox, Node.js, and Firebase.",
     aboutBioParagraphs: [
-      "I am Ahmed Hisham, a Mobile Developer and Designer based in the Kingdom of Bahrain. I specialize in building fluid, native-feeling mobile applications, multi-platform design systems, and responsive digital products.",
-      "With a cross-disciplinary background spanning iOS/Android engineering, interactive design, and product strategy, I approach development as an editorial craft — where micro-interactions, layout physics, and seamless performance define the user experience.",
-      "Over the past 5+ years, I have architected high-performance mobile apps across fintech, healthtech, and spatial productivity, collaborating with ambitious startups and global teams to transform complex workflows into effortless interfaces."
+      "I am a Software Integration and Middleware Engineer with 5+ years of hands-on experience architecting resilient enterprise APIs, data synchronizers, and distributed middleware layers. I have a proven track record bridging front-facing platforms with enterprise ERP cores, specialized in Microsoft Dynamics 365 (D365) REST integrations, custom ETL pipelines, message orchestration, and offline-to-online bi-directional synchronization engines using ObjectBox, Node.js, and Firebase.",
+      "Adept in implementing high-throughput RESTful services, secure token-based authentication (OAuth2/JWT), third-party financial and payment gateway webhooks, and automated data transformation pipelines across HR, Property Management, Insurance, FinTech, and Field Logistics domains.",
+      "Currently engineering mission-critical middleware layers and integration pipelines at Global ITS Group, interfacing client software with enterprise Microsoft Dynamics 365 environments and automating data flows with Power Automate."
+    ],
+    keyAchievements: [
+      "Architected and implemented enterprise middleware and API integration pipelines connecting client solutions to Microsoft Dynamics 365 (D365) ERP backends across the GCC.",
+      "Engineered custom offline synchronization engines and bi-directional replication middleware using ObjectBox and Firebase, guaranteeing data integrity, conflict resolution, and zero data loss.",
+      "Integrated external third-party services including payment gateways, geocoding/mapping engines, biometric/identity verifications, and automated document generation webhooks.",
+      "Built high-performance API endpoints and data adaptation layers in Node.js/Express, Python (Django), and Firebase Cloud Functions handling concurrent transactions with sub-second latency.",
+      "Established automated data extraction, transformation, and validation routines with Power Automate and RESTful webhooks, eliminating manual reconciliations between legacy and modern systems."
     ],
     specializations: [
-      "Cross-Platform & Native Mobile Architecture (Flutter, React Native)",
-      "Design Systems & Token Architecture (Figma, Tailwind, Stitches)",
-      "Micro-interactions & Physics-based Animation (Framer Motion, Reanimated)",
-      "Full-stack Edge Integrations (Supabase, PostgreSQL, Firebase)",
-      "High-fidelity Prototyping & Spatial UI Design"
+      "Microsoft Dynamics 365 (D365) REST / OData ERP Integrations",
+      "Offline-First Distributed Sync & ObjectBox Replication Middleware",
+      "High-Throughput RESTful API Architecture & Webhooks",
+      "OAuth2, JWT Token Lifecycle & RBAC Enterprise Security",
+      "Power Automate, Cloud Functions & Event-Driven Workflows",
+      "Cross-Platform Client Engineering (Flutter, Dart, Swift, React Native)"
     ],
     interests: [
-      "Tactile Digital Objects & Skeuomorphic Nostalgia",
-      "Typography & Editorial Grid Systems",
-      "Generative Shaders & Canvas Experiments",
-      "Audio-visual Micro-interactions",
-      "Specialty Coffee & Industrial Design"
+      "Distributed Systems & Data Replication Consistency",
+      "Enterprise ERP Schema Orchestration & ETL Pipelines",
+      "High-Performance Local Caching (ObjectBox / Redis)",
+      "Automated Workflow Orchestration (Power Automate)",
+      "AI-Assisted Architecture (GitHub Copilot / Cursor)"
     ],
     avatarImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
-    contactEmail: "ahmed.hisham.dev@gmail.com",
-    phone: "+973 3900 0000",
+    contactEmail: "Ahd5his@gmail.com",
+    phone: "+973 33880024",
+    certifications: [
+      { title: "Microsoft Certified: Dynamics 365 Fundamentals (ERP - MB-920)", issuer: "Microsoft", category: "Enterprise & Middleware" },
+      { title: "Microsoft Certified: Power Platform Fundamentals (PL-900)", issuer: "Microsoft", category: "Enterprise & Middleware" },
+      { title: "AWS Certified Cloud Practitioner (CLF-C02)", issuer: "Amazon Web Services", category: "Enterprise & Middleware" },
+      { title: "Software Engineering Immersive Certification", issuer: "General Assembly", category: "Backend, APIs & Databases" },
+      { title: "Node.js & Express API Development Specialization", issuer: "OpenJS Foundation / Coursera", category: "Backend, APIs & Databases" },
+      { title: "PostgreSQL & Database Design Certification", issuer: "University of Michigan / Coursera", category: "Backend, APIs & Databases" },
+      { title: "GitHub Copilot & AI-Assisted Software Development", issuer: "GitHub / Microsoft Learn", category: "Software Architecture & AI" },
+      { title: "Google UX Design Professional Certificate (Figma & Interface Logic)", issuer: "Google", category: "Software Architecture & AI" },
+      { title: "Google Flutter Certification", issuer: "Google (Online)", category: "Client Engineering" },
+      { title: "Swift iOS App Development Certification", issuer: "Bahrain Polytechnic", category: "Client Engineering" }
+    ],
+    education: [
+      { program: "Software Engineering Immersive Program", institution: "General Assembly", date: "April 2023" },
+      { program: "Swift Development Program", institution: "Bahrain Polytechnic", date: "June 2023" },
+      { program: "High School Diploma", institution: "Ahmed Al-Omran School", date: "June 2020" }
+    ],
+    community: [
+      "Charity Leadership Member: Ras Ruman (Since 2018)",
+      "Community Religious Instructor: Ras Ruman (Since 2016)",
+      "Pandemic Volunteer: Ministry of Health – Bahrain (May 2020)",
+      "Blood Donation Support: Ibn Sina Health Center"
+    ],
+    reference: {
+      name: "Hashim Abdulaziz",
+      title: "Manager, Development & ISV",
+      company: "Global ITS Group",
+      phone: "+973 36882440"
+    },
     socials: [
-      {
-        platform: "GitHub",
-        handle: "github.com/ahmedhisham",
-        url: "https://github.com",
-        icon: "Github"
-      },
       {
         platform: "LinkedIn",
         handle: "linkedin.com/in/ahmed-hisham",
-        url: "https://linkedin.com",
+        url: "https://linkedin.com/in/ahmed-hisham",
         icon: "Linkedin"
       },
       {
-        platform: "X / Twitter",
-        handle: "@ahmedhisham_dev",
-        url: "https://twitter.com",
-        icon: "Twitter"
+        platform: "GitHub",
+        handle: "github.com/ahmedhisham",
+        url: "https://github.com/ahmedhisham",
+        icon: "Github"
       },
       {
-        platform: "Dribbble",
-        handle: "dribbble.com/ahmedhisham",
-        url: "https://dribbble.com",
-        icon: "Dribbble"
-      },
-      {
-        platform: "Figma",
-        handle: "@ahmedhisham",
-        url: "https://figma.com",
-        icon: "Figma"
+        platform: "Email",
+        handle: "Ahd5his@gmail.com",
+        url: "mailto:Ahd5his@gmail.com",
+        icon: "Mail"
       }
     ]
   },
@@ -174,237 +210,318 @@ export const portfolioData: PortfolioData = {
       id: "about",
       number: "01",
       name: "ABOUT ME",
-      sublabel: "IDENTITY & DOSSIER",
-      fileType: "Document Archive",
-      itemCount: "4 Sections",
+      sublabel: "IDENTITY & EXECUTIVE SUMMARY",
+      fileType: "Executive Dossier",
+      itemCount: "5 Sections",
       updated: "2026",
-      accentColor: "rgba(168, 85, 247, 0.4)",
-      description: "Personal statement, background, philosophy, and creative direction."
+      accentColor: "rgba(59, 130, 246, 0.45)",
+      description: "Executive summary, core achievements, certifications, education, and credentials."
     },
     {
       id: "projects",
       number: "02",
       name: "PROJECTS",
-      sublabel: "SELECTED WORKS",
-      fileType: "Directory / Apps",
-      itemCount: "6 Case Studies",
+      sublabel: "ENTERPRISE DELIVERABLES",
+      fileType: "Integration Catalog",
+      itemCount: "8 Deliverables",
       updated: "2026",
-      accentColor: "rgba(129, 140, 248, 0.4)",
-      description: "Interactive mobile applications, design systems, and digital products."
+      accentColor: "rgba(16, 185, 129, 0.45)",
+      description: "Enterprise ERP integrations, offline sync engines, middleware pipelines, and API services."
     },
     {
       id: "experience",
       number: "03",
       name: "EXPERIENCE",
-      sublabel: "CAREER TIMELINE",
+      sublabel: "CAREER RECORDS",
       fileType: "Work Logs",
-      itemCount: "4 Roles",
-      updated: "2026",
-      accentColor: "rgba(192, 132, 252, 0.4)",
-      description: "Chronological engineering records, leadership impact, and achievements."
+      itemCount: "Global ITS Group",
+      updated: "Present",
+      accentColor: "rgba(245, 158, 11, 0.45)",
+      description: "Software Integration & Applications Developer role details, ERP middleware & deliverables."
     },
     {
       id: "skills",
       number: "04",
       name: "SKILLS",
-      sublabel: "TECH STACK & TOOLS",
+      sublabel: "CORE TECHNOLOGIES",
       fileType: "System Manifest",
-      itemCount: "24 Technologies",
+      itemCount: "6 Domains",
       updated: "2026",
-      accentColor: "rgba(147, 51, 234, 0.4)",
-      description: "Engineering proficiencies, frameworks, design toolchains, and infrastructure."
+      accentColor: "rgba(139, 92, 246, 0.45)",
+      description: "Integrations, ERP systems, backend APIs, databases, caching, and cross-platform stacks."
     },
     {
       id: "design-lab",
       number: "05",
-      name: "DESIGN & LAB",
-      sublabel: "EXPERIMENTS & ARTIFACTS",
-      fileType: "Visual Gallery",
-      itemCount: "6 Explorations",
+      name: "CERTIFICATIONS",
+      sublabel: "CREDENTIALS & HONORS",
+      fileType: "Accreditations",
+      itemCount: "10 Credentials",
       updated: "2026",
-      accentColor: "rgba(168, 85, 247, 0.35)",
-      description: "Visual systems, spatial prototypes, micro-interactions, and design studies."
+      accentColor: "rgba(244, 63, 94, 0.45)",
+      description: "Microsoft D365, Power Platform, AWS Cloud, PostgreSQL, and Software Engineering certifications."
     },
     {
       id: "contact",
       number: "06",
       name: "CONTACT",
-      sublabel: "INITIATE SESSION",
-      fileType: "Encrypted Comms",
-      itemCount: "Direct Channels",
+      sublabel: "DIRECT CHANNELS",
+      fileType: "Direct Transmission",
+      itemCount: "Bahrain (GMT+3)",
       updated: "2026",
-      accentColor: "rgba(216, 180, 254, 0.4)",
-      description: "Direct email inquiry, messaging channels, social networks, and timezone."
+      accentColor: "rgba(14, 165, 233, 0.5)",
+      description: "Direct contact info (+973 33880024), Ahd5his@gmail.com, LinkedIn, and reference details."
     }
   ],
 
   projects: [
     {
-      id: "portfolio-os",
-      title: "Portfolio OS",
-      year: "2026",
-      type: "Interactive File System Portfolio",
-      category: "Web & System",
-      summary: "A tactile desktop archive that reimagines personal websites through physical folder physics, spring animations, and frosted glass editorial art direction.",
-      description: "Portfolio OS turns web navigation into an engaging physical-digital desktop workstation. Built with Next.js, Framer Motion, and Tailwind CSS, it features organic stacked folders, contextual cursors, live timezone telemetry from Bahrain, and zero-latency layout transitions.",
-      featuredImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["Next.js", "React", "TypeScript", "Framer Motion", "Tailwind CSS"],
-      role: "Lead Designer & Frontend Architect",
-      timeline: "3 Weeks / 2026",
-      platform: "Web & Mobile Adaptive",
+      id: "employee-self-service",
+      title: "Employee Self Service (ESS)",
+      year: "2024 — Present",
+      type: "Middleware & Client Integration",
+      category: "Enterprise ERP & HR",
+      summary: "Architected the integration layer connecting 1,000+ staff clients with Microsoft Dynamics 365 ERP backend.",
+      description: "Built bi-directional middleware for leaves, loans, overtime, expense claims, and manager approval hierarchies. Implemented an offline request queue using ObjectBox that automatically validates and synchronizes records upon reconnection with zero data loss.",
+      featuredImage: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["Microsoft Dynamics 365 (D365) REST APIs", "ObjectBox", "Firebase", "Flutter", "OData Web Services", "Power Automate"],
+      role: "Lead Integration Engineer & Middleware Developer",
+      timeline: "Ongoing Enterprise Production",
+      platform: "Enterprise Mobile & Web Client",
       metrics: [
-        { label: "Lighthouse Score", value: "99/100" },
-        { label: "Frame Rate", value: "60 FPS Springs" },
-        { label: "Interaction Latency", value: "<16ms" }
+        { label: "Active Enterprise Staff", value: "1,000+ Users" },
+        { label: "Sync Latency", value: "<0.4s" },
+        { label: "Offline Resilience", value: "100% Zero Data Loss" }
       ],
       highlights: [
-        "Spring-physics folder stacking engine with dynamic z-index management and layoutId expansion.",
-        "Synthesized Web Audio API sound feedback for tactile paper slide and click responses.",
-        "Dynamic custom cursor with context-aware labels (OPEN, VIEW, CLOSE).",
-        "Clean headless TypeScript data layer for instant portfolio customization."
+        "Architected bi-directional replication pipeline interfacing mobile clients with Microsoft Dynamics 365 HR cores.",
+        "Built automated offline request queue with local schema mappings in ObjectBox NoSQL store.",
+        "Integrated secure attachment upload pipelines and automated FCM push notification triggers on manager approval actions."
+      ],
+      endpoints: [
+        "D365 OData endpoints",
+        "Attachment upload pipeline",
+        "FCM notification triggers"
       ],
       links: [
-        { label: "Source Code", url: "https://github.com", icon: "Github" },
-        { label: "Live Deployment", url: "#", icon: "ExternalLink" }
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
       ]
     },
     {
-      id: "aura-health",
-      title: "Aura Health AI",
-      year: "2025",
-      type: "Mobile Health Companion",
-      category: "Mobile",
-      summary: "Next-generation biometric telemetry and AI health companion app with fluid Apple HealthKit & Google Fit integration.",
-      description: "Aura Health provides personalized daily biometric insight dashboards, sleep rhythm optimization, and AI-driven recovery scoring. Built with Flutter and Supabase, it processes over 20+ sensory data points into elegant dark-mode circular visualizations.",
-      featuredImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["Flutter", "Dart", "Supabase", "HealthKit", "Figma", "Riverpod"],
-      role: "Lead Mobile Developer",
-      timeline: "5 Months / 2025",
-      platform: "iOS & Android",
-      metrics: [
-        { label: "Active Users", value: "45,000+" },
-        { label: "App Store Rating", value: "4.9 ★" },
-        { label: "Sync Latency", value: "0.2s" }
-      ],
-      highlights: [
-        "Constructed custom GPU-accelerated canvas charts for real-time heart rate variability (HRV) rendering.",
-        "Integrated on-device biometrics and secure local storage with AES-256 encryption.",
-        "Built seamless dark/light theme switching with custom OLED pitch-black colorways.",
-        "Architected offline-first local cache synchronization using SQLite and Supabase Realtime."
-      ],
-      links: [
-        { label: "App Store", url: "https://apple.com", icon: "Smartphone" },
-        { label: "Case Study", url: "#", icon: "FileText" }
-      ]
-    },
-    {
-      id: "kinetix-mobility",
-      title: "Kinetix Mobility",
-      year: "2025",
-      type: "On-Demand Transit & Fleet App",
-      category: "Mobile",
-      summary: "Modern ride-hailing and micro-mobility booking app with real-time vector map rendering and zero-latency driver tracking.",
-      description: "Kinetix redefines urban commuting in the GCC with multi-modal transport dispatching (e-scooters, electric taxis, metro tickets). Featuring React Native, Mapbox GL, and WebSockets, the app delivers ultra-smooth 60fps route previews and instant Apple Pay checkout.",
-      featuredImage: "https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["React Native", "TypeScript", "Mapbox GL", "WebSockets", "Node.js", "Redux Toolkit"],
-      role: "Senior Mobile Engineer",
-      timeline: "6 Months / 2025",
-      platform: "Cross-Platform iOS & Android",
-      metrics: [
-        { label: "Daily Rides", value: "18,000+" },
-        { label: "Booking Time", value: "3.2 Secs" },
-        { label: "Crash-Free Rate", value: "99.94%" }
-      ],
-      highlights: [
-        "Implemented custom Mapbox camera interpolation for cinematic ride tracking.",
-        "Designed one-tap biometric payment flow with localized Arabic and English typography.",
-        "Reduced initial app launch time by 42% via Hermes engine bytecode optimization."
-      ],
-      links: [
-        { label: "Product Demo", url: "#", icon: "Play" },
-        { label: "GitHub Overview", url: "https://github.com", icon: "Github" }
-      ]
-    },
-    {
-      id: "zenith-design-system",
-      title: "Zenith Design System",
+      id: "property-management",
+      title: "Property Management Integration",
       year: "2024",
-      type: "Multi-Platform Component Library",
-      category: "Design & UI",
-      summary: "An enterprise design system and tokenized component architecture unified across Figma, React Native, and Web.",
-      description: "Zenith is an accessible, tokenized UI system used across 4 mobile products and 2 web platforms. It provides 80+ audited accessible components, dark-first color semantics, motion tokens, and automated Storybook documentation.",
-      featuredImage: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["Figma", "Design Tokens", "React Native", "Tailwind CSS", "Storybook", "TypeScript"],
-      role: "Design Systems Lead",
-      timeline: "4 Months / 2024",
-      platform: "Universal Design Framework",
+      type: "Platform & Payment Middleware",
+      category: "Real Estate & Billing",
+      summary: "Engineered middleware integrating property databases with dynamic lease generation engines and secure payment gateway webhooks.",
+      description: "Developed automated rent payment webhook listeners, reconciliation APIs, and ticket dispatch webhooks for maintenance personnel. Provides automated reconciliation between financial ledgers and tenant portals.",
+      featuredImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["REST Webhooks", "Firebase", "ObjectBox", "Flutter", "Payment Gateways", "PDF Generation"],
+      role: "Software Integration Developer",
+      timeline: "Enterprise Release",
+      platform: "Cross-Platform Real Estate Suite",
       metrics: [
-        { label: "Components", value: "84 Atoms & Molecules" },
-        { label: "Dev Velocity Boost", value: "+35%" },
-        { label: "WCAG Compliance", value: "AAA Level" }
+        { label: "Payment Reconciliation", value: "Automated Instant" },
+        { label: "Contract Generation", value: "<1.2s PDF Engine" }
       ],
       highlights: [
-        "Engineered automated Figma-to-Code token pipeline exporting to JSON, TypeScript, and CSS variables.",
-        "Crafted comprehensive motion guidelines with unified spring presets across Flutter and React.",
-        "Authored interactive component documentation and playground in Storybook."
+        "Engineered automated rent payment webhook listeners with idempotency guards and reconciliation routines.",
+        "Constructed programmatic PDF lease agreement compilation engine connected to central property databases.",
+        "Automated maintenance ticket dispatch webhooks routing directly to field personnel queues."
+      ],
+      endpoints: [
+        "Payment Gateway Webhooks",
+        "PDF Contract Gen API",
+        "Ticket Dispatch Webhooks"
       ],
       links: [
-        { label: "Figma Community", url: "https://figma.com", icon: "Figma" },
-        { label: "Documentation", url: "#", icon: "FileCode" }
+        { label: "LinkedIn Overview", url: "https://linkedin.com/in/ahmed-hisham", icon: "Linkedin" }
       ]
     },
     {
-      id: "oasis-fintech",
-      title: "Oasis Pay & Wealth",
-      year: "2024",
-      type: "Neobank & Investment Mobile App",
-      category: "Mobile",
-      summary: "High-security digital banking app featuring real-time multi-currency wallets, virtual cards, and automated savings vaults.",
-      description: "Oasis Pay brings bespoke private banking aesthetics to consumer fintech. Built with Flutter, Supabase, and custom biometric security layers, users can manage virtual Visa cards, trade GCC indices, and split bills with QR contacts.",
-      featuredImage: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["Flutter", "Dart", "Supabase", "Bloc Architecture", "Secure Enclave"],
-      role: "Mobile App Architect",
-      timeline: "7 Months / 2024",
-      platform: "iOS & Android",
+      id: "van-sales-sync",
+      title: "Van Sales Offline-to-Cloud Sync",
+      year: "2023 — 2024",
+      type: "Field POS & ERP Middleware",
+      category: "Supply Chain & ERP",
+      summary: "Engineered an offline-first transactional middleware engine for van drivers operating in low-connectivity areas.",
+      description: "Developed local data-store synchronization algorithms that capture offline sales, generate receipts, and batch-upload daily transaction journals into the core ERP with automated conflict resolution.",
+      featuredImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["ObjectBox Sync", "RESTful APIs", "Firebase", "ERP OData", "Flutter", "SQLite"],
+      role: "Middleware & Sync Engine Architect",
+      timeline: "Production Deployment across GCC",
+      platform: "Rugged Mobile POS Terminals",
       metrics: [
-        { label: "Monthly Volume", value: "$4.2M" },
-        { label: "Security Audit", value: "Zero Vulnerabilities" },
-        { label: "NPS Score", value: "78" }
+        { label: "Daily Journal Transactions", value: "10,000+ Batched" },
+        { label: "Conflict Resolution Rate", value: "99.98% Automated" }
       ],
       highlights: [
-        "Crafted interactive 3D virtual card with gyro tilt response using accelerometer sensory inputs.",
-        "Built instant peer-to-peer money transfers with haptic feedback confirmation loops.",
-        "Architected strict state management utilizing BLoC and immutable data models."
+        "Engineered high-throughput embedded ObjectBox local database engine on mobile POS hardware.",
+        "Created custom mathematical diffing and timestamp conflict resolution algorithms for batch ERP uploads.",
+        "Eliminated inventory discrepancy and manual re-entry errors across remote logistics routes."
+      ],
+      endpoints: [
+        "Batch ERP Sync Endpoints",
+        "POS Transaction APIs",
+        "Inventory Reconciliation"
       ],
       links: [
-        { label: "Case Study", url: "#", icon: "ExternalLink" }
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
       ]
     },
     {
-      id: "lumina-spatial",
-      title: "Lumina Spatial Notes",
+      id: "insurance-claims-middleware",
+      title: "Insurance Claims & Policy Middleware",
       year: "2023",
-      type: "Spatial Productivity & Canvas Workspace",
-      category: "Web & System",
-      summary: "An infinite 3D spatial canvas for organizing thoughts, moodboards, and engineering schematics in an infinite room.",
-      description: "Lumina blends 2D note-taking with 3D spatial positioning. Created using Three.js, React, and Framer Motion, it allows users to pin thoughts onto virtual floating cards, connect nodes with glowing bezier lines, and collaborate in real-time.",
-      featuredImage: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80",
-      technologies: ["React", "Three.js", "WebGL", "TypeScript", "Tailwind CSS"],
-      role: "Creative Developer & UI Engineer",
-      timeline: "3 Months / 2023",
-      platform: "Web Desktop Application",
+      type: "InsurTech Middleware & APIs",
+      category: "InsurTech",
+      summary: "Constructed API integration middleware handling instant premium quotations, motor/medical policy renewals, and multi-part claim filings.",
+      description: "Built media-upload pipelines for incident reports and real-time status callbacks between legacy underwriting systems and customer apps, drastically reducing claims turnaround time.",
+      featuredImage: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["RESTful APIs", "Firebase Cloud Functions", "ObjectBox", "JSON/XML Serializers", "Webhooks"],
+      role: "Backend & API Integration Engineer",
+      timeline: "Enterprise InsurTech Project",
+      platform: "Mobile & Web Portal Middleware",
       metrics: [
-        { label: "Render Target", value: "10,000 Nodes" },
-        { label: "FPS", value: "Solid 60 FPS" }
+        { label: "Quotation Speed", value: "Sub-Second Engine" },
+        { label: "Claim Filing Media", value: "Multi-part Uploads" }
       ],
       highlights: [
-        "Engineered quad-tree spatial indexing for smooth infinite panning and zooming.",
-        "Created custom GLSL glow shaders for reactive node connections.",
-        "Designed keyboard-first command palette (`Cmd + K`) for instant navigation."
+        "Constructed rating engine API connectors mapping legacy actuarial tables to modern JSON schemas.",
+        "Built resilient multipart claim document and photo ingestion pipelines with validation checks.",
+        "Created webhook callback mechanisms broadcasting policy renewal status changes in real time."
+      ],
+      endpoints: [
+        "Rating Engine APIs",
+        "Multipart Claim Uploads",
+        "Underwriting Callback Webhooks"
       ],
       links: [
-        { label: "Live Prototype", url: "#", icon: "Play" },
-        { label: "GitHub", url: "https://github.com", icon: "Github" }
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
+      ]
+    },
+    {
+      id: "wealth-investment-api",
+      title: "Wealth & Investment Portfolio API",
+      year: "2023",
+      type: "FinTech & Data Abstraction Middleware",
+      category: "FinTech & Wealth",
+      summary: "Developed data abstraction layers aggregating real-time investment returns, scheme allocations, and historical asset yields.",
+      description: "Integrated secure investor onboarding flows with data validation middleware ensuring regulatory compliance before transmitting client portfolios to central asset management databases.",
+      featuredImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["Node.js", "Firebase", "ObjectBox", "REST APIs", "OAuth2 / JWT", "PostgreSQL"],
+      role: "API Integration Developer",
+      timeline: "FinTech Deployment",
+      platform: "Financial Dashboard Services",
+      metrics: [
+        { label: "Data Abstraction Yield", value: "Real-time Aggregation" },
+        { label: "Security Protocol", value: "OAuth2 & JWT Token Lifecycles" }
+      ],
+      highlights: [
+        "Developed financial yield calculation aggregators with caching layers for fast portfolio rendering.",
+        "Implemented strict data validation middleware enforcing regional compliance standards.",
+        "Integrated OAuth2 token lifecycle management and encrypted session tokens."
+      ],
+      endpoints: [
+        "Financial Yield Aggregators",
+        "Portfolio Allocation Endpoints",
+        "Secure Auth APIs"
+      ],
+      links: [
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
+      ]
+    },
+    {
+      id: "fixed-assets-gps",
+      title: "Fixed Assets Tracking & GPS Validator",
+      year: "2023",
+      type: "Logistics & ERP Asset Ops",
+      category: "Enterprise Asset Ops",
+      summary: "Implemented barcode/QR-reading ingestion services combined with GPS location validation APIs.",
+      description: "Engineered middleware to cross-reference scanned assets against central ERP registry databases, updating asset lifecycle states and logging discrepancy alerts automatically.",
+      featuredImage: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["Geolocation APIs", "Barcode Scanners", "ObjectBox", "Firebase", "REST APIs"],
+      role: "Systems Integration Developer",
+      timeline: "Logistics Operations Suite",
+      platform: "Enterprise Field Hardware",
+      metrics: [
+        { label: "Scanned Asset Accuracy", value: "100% Cross-Referenced" },
+        { label: "Discrepancy Logging", value: "Automated Instant" }
+      ],
+      highlights: [
+        "Constructed barcode & QR-reading ingestion endpoints with GPS geofence verification.",
+        "Engineered real-time ERP asset registry updater logging depreciation and transfer states.",
+        "Integrated discrepancy alert dispatchers notifying asset managers of anomalous scans."
+      ],
+      endpoints: [
+        "Asset Registry REST APIs",
+        "Geolocation Validation Services",
+        "Discrepancy Logs"
+      ],
+      links: [
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
+      ]
+    },
+    {
+      id: "lakum-marketplace",
+      title: "Lakum Marketplace Platform",
+      year: "2022 — 2023",
+      type: "Consumer Portal & GIS Integration",
+      category: "Real Estate & Billing",
+      summary: "Integrated Google Maps Geocoding and Places APIs with property backend listings.",
+      description: "Developed automated scheduling API integrations for client consultations and webhook processing for instant transaction receipts and digital agreement distribution.",
+      featuredImage: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["Google Maps APIs", "Payment Gateway", "Firebase", "REST APIs", "Node.js"],
+      role: "Backend & API Integration Engineer",
+      timeline: "Consumer Portal Launch",
+      platform: "Web & Mobile Portal",
+      metrics: [
+        { label: "GIS Integration", value: "Google Maps & Places APIs" },
+        { label: "Webhook Processing", value: "Instant Receipts" }
+      ],
+      highlights: [
+        "Integrated Google Maps Geocoding endpoints for dynamic property proximity mapping.",
+        "Developed appointment booking scheduling webhooks syncing client calendars.",
+        "Connected payment gateway webhooks for instant digital receipt delivery."
+      ],
+      endpoints: [
+        "Spatial Query Endpoints",
+        "Payment Callback Webhooks",
+        "Consultation APIs"
+      ],
+      links: [
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
+      ]
+    },
+    {
+      id: "crafty-creation-fullstack",
+      title: "Full-Stack & Backend Web Services",
+      year: "2022",
+      type: "Backend & Full-Stack Platform",
+      category: "Backend & Full-Stack",
+      summary: "Engineered RESTful backend services using Python (Django) and Node.js/Express for course catalog platforms (CraftyCreation).",
+      description: "Implemented relational database schemas (SQL/PostgreSQL), secure user session handling, and programmatic CRUD interfaces with clean architectural patterns.",
+      featuredImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      technologies: ["Python (Django)", "Node.js", "Express.js", "SQL", "PostgreSQL", "REST APIs"],
+      role: "Backend Developer",
+      timeline: "Web Services Architecture",
+      platform: "Web API Services",
+      metrics: [
+        { label: "Database Layer", value: "PostgreSQL Relational Schema" },
+        { label: "Authentication", value: "Secure Session & JWT" }
+      ],
+      highlights: [
+        "Engineered normalized relational database models with optimized SQL query indexing.",
+        "Constructed programmatic CRUD endpoints for course registrations and catalog queries.",
+        "Built robust session authentication and role validation filters."
+      ],
+      endpoints: [
+        "Course Registration Endpoints",
+        "Session Auth",
+        "SQL Data Model"
+      ],
+      links: [
+        { label: "GitHub Profile", url: "https://github.com/ahmedhisham", icon: "Github" }
       ]
     }
   ],
@@ -412,200 +529,115 @@ export const portfolioData: PortfolioData = {
   experiences: [
     {
       id: "exp-1",
-      role: "Senior Mobile Engineer & UI Designer",
-      company: "Apex Digital Studios",
-      companyUrl: "https://example.com",
-      period: "2024 — Present",
-      location: "Manama, Bahrain / Hybrid",
-      type: "Full-Time Leadership",
-      summary: "Directing mobile application architecture and design engineering for high-growth enterprise clients across the GCC.",
+      role: "Software Integration & Applications Developer",
+      company: "Global ITS Group",
+      companyUrl: "https://globalitsgroup.com",
+      period: "June 2023 — Present",
+      location: "Kingdom of Bahrain",
+      type: "Full-Time Enterprise",
+      summary: "Design, engineer, and maintain robust middleware layers and integration pipelines interfacing client software with Microsoft Dynamics 365 (D365) ERP environments across the GCC.",
       responsibilities: [
-        "Lead a cross-functional team of 6 engineers and designers across Flutter, React Native, and Design Systems.",
-        "Define mobile performance benchmarks, CI/CD automated release pipelines, and architectural standards.",
-        "Partner closely with executive stakeholders and product managers to ideate, prototype, and ship high-impact features."
+        "Design, engineer, and maintain robust middleware layers and integration pipelines interfacing client software with Microsoft Dynamics 365 (D365) ERP environments.",
+        "Developed resilient offline-first caching and distributed synchronization middleware using ObjectBox, automating schema mappings, request queueing, and conflict resolution during offline transactions.",
+        "Implemented secure API architectures, embedding OAuth2, JWT token lifecycle management, role-based authorization protocols (RBAC), and SSL payload encryption across all endpoints.",
+        "Constructed event-driven micro-integrations and automated workflow routines utilizing Firebase Cloud Functions, REST APIs, and Power Automate to process business data in real time.",
+        "Engineered third-party integrations including payment gateway processors, invoice dispatchers, PDF document generators, and automated push notification middleware."
       ],
       achievements: [
-        "Spearheaded the redesign and rewrite of the flagship fintech client app, boosting monthly active users by 64%.",
-        "Established company-wide Mobile Design System reducing feature development cycle time by 30%.",
-        "Maintained 99.9% crash-free sessions across 100k+ deployed production devices."
+        "Delivered enterprise integration middleware connecting 1,000+ staff to Microsoft Dynamics 365 ERP.",
+        "Constructed offline replication engines in ObjectBox ensuring 100% zero data loss in field logistics.",
+        "Automated reconciliation workflows with Power Automate, eliminating manual reconciliations."
       ],
-      technologies: ["Flutter", "React Native", "TypeScript", "Supabase", "Figma", "CI/CD Fastlane"]
-    },
-    {
-      id: "exp-2",
-      role: "Mobile App Developer & UI/UX Consultant",
-      company: "Nexus Labs Interactive",
-      companyUrl: "https://example.com",
-      period: "2022 — 2024",
-      location: "Bahrain & Remote",
-      type: "Contract & Consulting",
-      summary: "Delivered bespoke mobile products, healthtech telemetry apps, and interactive web tools for international startups.",
-      responsibilities: [
-        "Architected native and cross-platform client applications from scratch with offline-first caching.",
-        "Created high-fidelity Figma prototypes with interactive micro-animations and user testing protocols.",
-        "Integrated complex third-party APIs including Stripe, Apple HealthKit, Mapbox, and Firebase Auth."
-      ],
-      achievements: [
-        "Shipped 8 production mobile apps to the Apple App Store and Google Play Store with an average 4.8-star rating.",
-        "Developed custom Bluetooth LE communication protocol for connected IoT wellness devices.",
-        "Reduced app bundle size by 38% through tree-shaking and dynamic asset loading."
-      ],
-      technologies: ["Flutter", "Dart", "Firebase", "HealthKit", "GraphQL", "Figma"]
-    },
-    {
-      id: "exp-3",
-      role: "Frontend & Mobile Developer",
-      company: "Vanguard Tech Solutions",
-      companyUrl: "https://example.com",
-      period: "2021 — 2022",
-      location: "Bahrain",
-      type: "Full-Time",
-      summary: "Built modern responsive web applications and cross-platform mobile interfaces for regional enterprise clients.",
-      responsibilities: [
-        "Developed modular UI components using React, Next.js, and React Native.",
-        "Collaborated with backend teams to integrate RESTful endpoints and PostgreSQL databases.",
-        "Conducted accessibility audits and improved cross-browser compatibility across mobile browsers."
-      ],
-      achievements: [
-        "Engineered an interactive e-commerce dashboard processing over 5,000 daily orders.",
-        "Migrated legacy codebase to TypeScript, reducing production runtime errors by 45%."
-      ],
-      technologies: ["React", "React Native", "TypeScript", "Tailwind CSS", "REST APIs", "Git"]
-    },
-    {
-      id: "exp-4",
-      role: "UI/UX & Creative Tech Intern",
-      company: "Creative Matrix Studio",
-      companyUrl: "https://example.com",
-      period: "2020 — 2021",
-      location: "Bahrain",
-      type: "Apprenticeship",
-      summary: "Studied design systems, user research, wireframing, and interactive web prototyping under senior design directors.",
-      responsibilities: [
-        "Designed wireframes, user flow diagrams, and interactive web prototypes in Figma.",
-        "Coded interactive promotional landing pages and animation experiments using HTML5/CSS3 and JavaScript."
-      ],
-      achievements: [
-        "Won internal studio sprint for best interactive micro-site prototype.",
-        "Authored visual guidelines adopted by 3 client brand launches."
-      ],
-      technologies: ["Figma", "JavaScript", "HTML/CSS", "Wireframing", "User Research"]
+      technologies: [
+        "Microsoft Dynamics 365 (D365)",
+        "RESTful API Architecture",
+        "ObjectBox NoSQL",
+        "Firebase Cloud Functions",
+        "Power Automate",
+        "Node.js",
+        "OAuth2 / JWT",
+        "Flutter",
+        "SQL (PostgreSQL / MySQL)"
+      ]
     }
   ],
 
   skills: [
     {
-      id: "mobile",
-      title: "Mobile & Application Engineering",
+      id: "integrations",
+      title: "Integrations & Middleware",
       code: "MODULE // 01",
-      iconName: "Smartphone",
+      iconName: "Layers",
       skills: [
-        { name: "Flutter & Dart", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "State management (BLoC/Riverpod), Custom Painters, Method Channels" },
-        { name: "React Native", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Reanimated 3, TurboModules, Expo, Native Bridging" },
-        { name: "iOS / Swift (Interop)", level: "Production", years: "3 Yrs", description: "SwiftUI basics, HealthKit, Push Notifications, App Store Release" },
-        { name: "Android / Kotlin (Interop)", level: "Production", years: "3 Yrs", description: "Jetpack Compose basics, Gradle config, Play Console" },
-        { name: "Cross-Platform Architecture", level: "Core Expert", highlight: true, years: "5 Yrs", description: "Offline-first sync, SQLite caching, Clean Architecture" },
-        { name: "Mobile Security & Biometrics", level: "Production", years: "3 Yrs", description: "Keychain/Keystore, Enclave token auth, Biometric prompt" }
+        { name: "RESTful API Architecture", level: "Core Expert", highlight: true, years: "5+ Yrs", description: "High-throughput endpoint design, rate limiting, and contract versioning" },
+        { name: "Middleware Design", level: "Core Expert", highlight: true, years: "5+ Yrs", description: "Distributed data abstraction layers, request interceptors, and transformations" },
+        { name: "Webhooks & Event Pipelines", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Idempotent event listeners, signature validation, and retry queues" },
+        { name: "Bi-directional Sync", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Conflict resolution algorithms, delta syncing, and timestamp ordering" },
+        { name: "Data Transformation (ETL)", level: "Core Expert", years: "5+ Yrs", description: "JSON/XML serialization, schema mapping, and data normalizations" },
+        { name: "Microservices Integration", level: "Production", years: "4+ Yrs", description: "Service mesh routing, async task handlers, and decoupled architectures" }
       ]
     },
     {
-      id: "frontend",
-      title: "Frontend Architecture & Motion",
+      id: "enterprise-erp",
+      title: "Enterprise & ERP Systems",
       code: "MODULE // 02",
-      iconName: "Code2",
-      skills: [
-        { name: "React & Next.js (App Router)", level: "Core Expert", highlight: true, years: "5 Yrs", description: "Server Components, Server Actions, Edge runtime" },
-        { name: "TypeScript", level: "Core Expert", highlight: true, years: "5 Yrs", description: "Strict type safety, Generics, Token types" },
-        { name: "Framer Motion", level: "Core Expert", highlight: true, years: "4 Yrs", description: "Physics-based spring curves, layoutId morphs, gestures" },
-        { name: "Tailwind CSS", level: "Core Expert", years: "4 Yrs", description: "Arbitrary values, custom plugin architecture, dark mode" },
-        { name: "Web Audio & Canvas API", level: "Production", years: "2 Yrs", description: "Synthesized audio feedback, 2D particle simulation" },
-        { name: "Performance & CWV", level: "Core Expert", years: "4 Yrs", description: "LCP/INP optimization, 60fps animations, asset pipelining" }
-      ]
-    },
-    {
-      id: "backend",
-      title: "Backend, Database & Cloud",
-      code: "MODULE // 03",
       iconName: "Database",
       skills: [
-        { name: "Supabase & PostgreSQL", level: "Core Expert", highlight: true, years: "3 Yrs", description: "Row Level Security (RLS), Realtime subscriptions, Edge Functions" },
-        { name: "Node.js & Express", level: "Production", years: "4 Yrs", description: "RESTful services, JWT auth, WebSockets" },
-        { name: "Firebase Suite", level: "Production", years: "4 Yrs", description: "Firestore, Cloud Messaging (FCM), Auth, Cloud Functions" },
-        { name: "GraphQL & REST APIs", level: "Core Expert", years: "5 Yrs", description: "Schema design, caching strategies, optimistic mutations" },
-        { name: "SQL & Relational Schema", level: "Production", years: "4 Yrs", description: "Indexing, foreign keys, migrations, query tuning" },
-        { name: "Docker & Container Basics", level: "Advanced", years: "2 Yrs", description: "Local development containers, compose orchestration" }
+        { name: "Microsoft Dynamics 365 (D365)", level: "Core Expert", highlight: true, years: "3+ Yrs", description: "ERP core interfacing, entity mappings, business logic integration" },
+        { name: "Power Automate", level: "Core Expert", highlight: true, years: "3+ Yrs", description: "Automated business workflows, triggers, and legacy bridging" },
+        { name: "ERP OData & REST Web Services", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "High-performance OData querying, pagination, batching" },
+        { name: "OAuth2 & JWT Auth Pipelines", level: "Core Expert", years: "4+ Yrs", description: "Token lifecycle management, RBAC, encrypted payloads" }
       ]
     },
     {
-      id: "design",
-      title: "Design Systems & Creative Tools",
-      code: "MODULE // 04",
-      iconName: "Palette",
+      id: "backend-api",
+      title: "Backend & API Development",
+      code: "MODULE // 03",
+      iconName: "Code2",
       skills: [
-        { name: "Figma (Advanced Auto-Layout & Variables)", level: "Core Expert", highlight: true, years: "5 Yrs", description: "Component variants, multi-mode variables, prototyping" },
-        { name: "Design Token Architecture", level: "Core Expert", highlight: true, years: "3 Yrs", description: "Semantic color schemes, typography scales, token sync" },
-        { name: "UI/UX & User Flows", level: "Core Expert", years: "5 Yrs", description: "Wireframing, information architecture, usability testing" },
-        { name: "Adobe Creative Cloud", level: "Production", years: "5 Yrs", description: "Photoshop, Illustrator, After Effects asset creation" },
-        { name: "Micro-interactions & Haptics", level: "Core Expert", years: "4 Yrs", description: "Tactile haptic triggers, physical ease curves" },
-        { name: "Editorial Typography & Grids", level: "Core Expert", years: "4 Yrs", description: "Swiss grids, serif hierarchy, responsive text systems" }
+        { name: "Node.js & Express.js", level: "Core Expert", highlight: true, years: "5+ Yrs", description: "High-throughput asynchronous servers, middleware pipelines" },
+        { name: "Python (Django)", level: "Production", years: "3+ Yrs", description: "REST Framework, ORM models, secure user authentication" },
+        { name: "Firebase Cloud Functions", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Serverless event triggers, background batch processors" },
+        { name: "WebSockets & Realtime", level: "Production", years: "4+ Yrs", description: "Full-duplex telemetry, status callbacks, live listeners" },
+        { name: "Postman API Testing", level: "Core Expert", years: "5+ Yrs", description: "Automated test suites, CI contract testing, mock servers" }
       ]
-    }
-  ],
-
-  designLab: [
-    {
-      id: "lab-1",
-      title: "Spatial Dynamic HUD",
-      category: "VisionOS / Spatial UI",
-      year: "2026",
-      description: "Glassmorphism spatial control center with responsive depth layers and dynamic lighting cues.",
-      previewUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
-      tags: ["Spatial UI", "Glassmorphism", "VisionOS"]
     },
     {
-      id: "lab-2",
-      title: "Tactile Audio Equalizer",
-      category: "Audio-Visual Interface",
-      year: "2025",
-      description: "Analog-inspired rotary dials, vu-meters, and real-time frequency spectrum visualizer.",
-      previewUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-      tags: ["Web Audio", "Skeuomorphism", "Canvas"]
+      id: "databases-caching",
+      title: "Databases & Caching",
+      code: "MODULE // 04",
+      iconName: "Cpu",
+      skills: [
+        { name: "ObjectBox NoSQL", level: "Core Expert", highlight: true, years: "3+ Yrs", description: "High-speed embedded database for local caching, instant search & offline sync" },
+        { name: "Firebase (Cloud Firestore)", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Realtime collections, security rules, distributed triggers" },
+        { name: "SQL (PostgreSQL, MySQL)", level: "Core Expert", years: "5+ Yrs", description: "Relational schema design, indexes, transactions, migrations" },
+        { name: "Redis", level: "Production", years: "3+ Yrs", description: "In-memory caching, rate-limiting counters, pub/sub queues" }
+      ]
     },
     {
-      id: "lab-3",
-      title: "Neobank Card Micro-Interactions",
-      category: "Mobile UI Physics",
-      year: "2025",
-      description: "Fluid gyroscope-tilt responsive metallic credit card with holographic sheen reflections.",
-      previewUrl: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
-      tags: ["Mobile Physics", "Hologram", "3D Tilt"]
+      id: "client-crossplatform",
+      title: "Client & Cross-Platform",
+      code: "MODULE // 05",
+      iconName: "Smartphone",
+      skills: [
+        { name: "Flutter & Dart", level: "Core Expert", highlight: true, years: "4+ Yrs", description: "Clean Architecture, BLoC/Riverpod, Method Channels, Custom Painters" },
+        { name: "Swift (iOS)", level: "Production", years: "3+ Yrs", description: "Native iOS integration, hardware channels, keychain storage" },
+        { name: "React Native", level: "Production", years: "4+ Yrs", description: "Cross-platform mobile apps, native bridges, Reanimated" },
+        { name: "JavaScript (ES6+) & Next.js", level: "Core Expert", years: "5+ Yrs", description: "Modern web applications, TypeScript, Tailwind CSS, HTML5/CSS3" }
+      ]
     },
     {
-      id: "lab-4",
-      title: "Monochrome Editorial Magazine Grid",
-      category: "Typography System",
-      year: "2024",
-      description: "Editorial layout with high-contrast serif headlines, asymmetric column offsets, and fine hairline borders.",
-      previewUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80",
-      tags: ["Editorial", "Typography", "Grid Systems"]
-    },
-    {
-      id: "lab-5",
-      title: "Generative Perlin Flow Field",
-      category: "Creative Coding",
-      year: "2024",
-      description: "Interactive particle swarm calculating vector angles across mathematical vector fields.",
-      previewUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
-      tags: ["WebGL", "Particles", "Generative"]
-    },
-    {
-      id: "lab-6",
-      title: "Terminal Command Palette OS",
-      category: "System Utility UI",
-      year: "2024",
-      description: "Keyboard-driven interactive command launcher with fuzzy query filtering and quick actions.",
-      previewUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
-      tags: ["CLI / OS", "Keyboard First", "Command Palette"]
+      id: "devops-ai",
+      title: "Architecture, DevOps & AI",
+      code: "MODULE // 06",
+      iconName: "Terminal",
+      skills: [
+        { name: "Git & Version Control", level: "Core Expert", years: "5+ Yrs", description: "Branching strategies, code reviews, semantic versioning" },
+        { name: "CI/CD Pipelines", level: "Production", years: "3+ Yrs", description: "Automated builds, linting, test suites, deployment pipelines" },
+        { name: "Docker Basics", level: "Production", years: "3+ Yrs", description: "Containerized development environments, compose configs" },
+        { name: "Cursor & Microsoft Copilot", level: "Core Expert", highlight: true, years: "3+ Yrs", description: "AI-assisted architecture, refactoring, and code verification" },
+        { name: "System Flow Architecture", level: "Core Expert", highlight: true, years: "5+ Yrs", description: "Enterprise integration architecture, message bus flow diagrams" }
+      ]
     }
   ]
 };

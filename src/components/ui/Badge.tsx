@@ -22,7 +22,7 @@ export function Badge({
 
   const variantClasses = {
     subtle: "bg-white/[0.04] text-neutral-300 border border-white/[0.08]",
-    glow: "bg-purple-500/10 text-purple-200 border border-purple-400/30 shadow-[0_0_12px_rgba(168,85,247,0.2)]",
+    glow: "bg-blue-500/10 text-blue-200 border border-blue-400/30 shadow-[0_0_12px_rgba(59,130,246,0.25)]",
     solid: "bg-white/10 text-white border border-white/20",
     mono: "bg-neutral-900/80 text-neutral-400 border border-white/[0.06] font-mono",
   };

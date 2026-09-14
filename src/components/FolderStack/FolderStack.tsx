@@ -23,110 +23,181 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
   };
 
   const handleTabHover = (folderId: string) => {
-    setHoveredFolderId(folderId);
-    soundEffects.playTabHover();
+    if (hoveredFolderId !== folderId) {
+      setHoveredFolderId(folderId);
+      soundEffects.playTabHover();
+    }
   };
 
   const activeFolder = folders.find((f) => f.id === activeFolderId) || null;
 
-  // 6 Stacked layers configured with consistent staircase steps and side-by-side tabs
+  // 6 Stacked layers with custom color palettes, distinct animations, and dedicated cursor triggers
   const stackLayers = [
     {
       id: "contact",
       label: "CONTACT ME",
+      cursorText: "OPEN CONTACT",
+      cursorColor: "sky",
+      themeColor: "#0ea5e9",
       left: "83.5%",
       width: "15%",
-      topOffset: 0, // px from top of stack
+      topOffset: 0,
       zIndex: 10,
       accent: true,
-      bgTab: "bg-[#9333ea] hover:bg-[#a855f7] text-white shadow-[0_-4px_18px_rgba(147,51,234,0.5)] border-purple-300/60",
-      bgCard: "bg-[#1e2438]/85",
+      bgTab: "bg-[#0ea5e9] hover:bg-[#38bdf8] text-white shadow-[0_-4px_22px_rgba(14,165,233,0.6)] border-sky-300/80",
+      bgCard: "bg-[#0b1b2b]",
+      hoverBorder: "border-sky-400/90 shadow-[0_-8px_30px_rgba(14,165,233,0.5)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -35 : 0,
+          scale: isHovered ? 1.01 : 1,
+        }),
+        transition: { type: "spring" as const, stiffness: 320, damping: 20, mass: 0.7 },
+      },
     },
     {
       id: "design-lab",
-      label: "DESIGN & LAB",
+      label: "CERTIFICATIONS",
+      cursorText: "OPEN CERTIFICATIONS",
+      cursorColor: "rose",
+      themeColor: "#f43f5e",
       left: "67.5%",
       width: "15%",
       topOffset: 12,
       zIndex: 20,
       accent: false,
-      bgTab: "bg-[#232b45] text-neutral-200 border-white/20 group-hover:text-purple-200 group-hover:border-purple-400/50 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
-      bgCard: "bg-[#1b2136]/85",
+      bgTab: "bg-[#28131b] text-neutral-200 border-rose-400/30 hover:text-rose-100 hover:border-rose-400/80 hover:shadow-[0_-6px_22px_rgba(244,63,94,0.5)]",
+      bgCard: "bg-[#1f0e15]",
+      hoverBorder: "border-rose-400/90 shadow-[0_-8px_30px_rgba(244,63,94,0.45)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -32 : 0,
+          rotate: isHovered ? 0.6 : 0,
+        }),
+        transition: { type: "spring" as const, stiffness: 240, damping: 24, mass: 0.75 },
+      },
     },
     {
       id: "skills",
       label: "SKILLS & TOOLS",
+      cursorText: "OPEN SKILLS",
+      cursorColor: "violet",
+      themeColor: "#8b5cf6",
       left: "50.5%",
       width: "16%",
       topOffset: 24,
       zIndex: 30,
       accent: false,
-      bgTab: "bg-[#20273f] text-neutral-200 border-white/20 group-hover:text-purple-200 group-hover:border-purple-400/50 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
-      bgCard: "bg-[#171d30]/90",
+      bgTab: "bg-[#201435] text-neutral-200 border-violet-400/30 hover:text-violet-100 hover:border-violet-400/80 hover:shadow-[0_-6px_22px_rgba(139,92,246,0.5)]",
+      bgCard: "bg-[#170e28]",
+      hoverBorder: "border-violet-400/90 shadow-[0_-8px_30px_rgba(139,92,246,0.45)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -31 : 0,
+          scale: isHovered ? 1.012 : 1,
+        }),
+        transition: { type: "spring" as const, stiffness: 290, damping: 21, mass: 0.7 },
+      },
     },
     {
       id: "experience",
       label: "EXPERIENCE",
+      cursorText: "OPEN EXPERIENCE",
+      cursorColor: "amber",
+      themeColor: "#f59e0b",
       left: "33.5%",
       width: "16%",
       topOffset: 36,
       zIndex: 40,
       accent: false,
-      bgTab: "bg-[#1d2338] text-neutral-200 border-white/20 group-hover:text-purple-200 group-hover:border-purple-400/50 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
-      bgCard: "bg-[#14192a]/90",
+      bgTab: "bg-[#2b1f0e] text-neutral-200 border-amber-400/30 hover:text-amber-100 hover:border-amber-400/80 hover:shadow-[0_-6px_22px_rgba(245,158,11,0.5)]",
+      bgCard: "bg-[#1f1609]",
+      hoverBorder: "border-amber-400/90 shadow-[0_-8px_30px_rgba(245,158,11,0.45)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -32 : 0,
+          scale: isHovered ? 1.006 : 1,
+        }),
+        transition: { type: "spring" as const, stiffness: 230, damping: 25, mass: 0.8 },
+      },
     },
     {
       id: "projects",
       label: "PROJECTS",
+      cursorText: "OPEN PROJECTS",
+      cursorColor: "emerald",
+      themeColor: "#10b981",
       left: "17.5%",
       width: "15%",
       topOffset: 48,
       zIndex: 50,
       accent: false,
-      bgTab: "bg-[#191f33] text-neutral-200 border-white/20 group-hover:text-purple-200 group-hover:border-purple-400/50 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
-      bgCard: "bg-[#111624]/95",
+      bgTab: "bg-[#0f281e] text-neutral-200 border-emerald-400/30 hover:text-emerald-100 hover:border-emerald-400/80 hover:shadow-[0_-6px_22px_rgba(16,185,129,0.5)]",
+      bgCard: "bg-[#0a1e16]",
+      hoverBorder: "border-emerald-400/90 shadow-[0_-8px_30px_rgba(16,185,129,0.45)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -32 : 0,
+          rotate: isHovered ? -0.6 : 0,
+        }),
+        transition: { type: "spring" as const, stiffness: 280, damping: 22, mass: 0.75 },
+      },
     },
     {
       id: "about",
       label: "ABOUT ME",
+      cursorText: "OPEN ABOUT ME",
+      cursorColor: "blue",
+      themeColor: "#3b82f6",
       left: "1.5%",
       width: "15%",
       topOffset: 60,
       zIndex: 60,
       accent: false,
       isFront: true,
-      bgTab: "bg-[#161c2e] text-neutral-200 border-white/20 group-hover:text-purple-200 group-hover:border-purple-400/50 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
-      bgCard: "bg-gradient-to-b from-[#141826]/98 via-[#0e111a]/98 to-[#08090d]/98",
+      bgTab: "bg-[#0c1629] text-neutral-200 border-blue-400/40 hover:text-blue-100 hover:border-blue-400/90 shadow-[-2px_-3px_12px_rgba(0,0,0,0.4)]",
+      bgCard: "bg-[#080d1a] bg-gradient-to-b from-[#0c1629] via-[#080d1a] to-[#04070d]",
+      hoverBorder: "border-blue-400 shadow-[0_-8px_35px_rgba(59,130,246,0.4)]",
+      motionConfig: {
+        animate: (isHovered: boolean) => ({
+          y: isHovered ? -30 : 0,
+        }),
+        transition: { type: "spring" as const, stiffness: 250, damping: 24, mass: 0.75 },
+      },
     },
   ];
 
   return (
     <section className="relative w-full max-w-5xl mx-auto px-3 sm:px-6 pt-2 pb-20 select-none">
-      {/* Glow Ambient behind folder stack */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Dynamic Ambient lighting behind folder stack */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[140px] pointer-events-none -z-10 transition-colors duration-500 opacity-20"
+        style={{
+          backgroundColor: hoveredFolderId 
+            ? stackLayers.find(l => l.id === hoveredFolderId)?.themeColor || "#3b82f6"
+            : "#3b82f6"
+        }}
+      />
 
       {/* Desktop Stacked Folder System */}
-      <div className="relative w-full min-h-[480px] sm:min-h-[540px] md:min-h-[580px]">
-        
+      <div 
+        className="relative w-full min-h-[480px] sm:min-h-[540px] md:min-h-[580px]"
+        onMouseLeave={() => setHoveredFolderId(null)}
+      >
+        {/* Render all 6 layers uniformly */}
         {stackLayers.map((layer) => {
           const isHovered = hoveredFolderId === layer.id;
 
           return (
             <motion.div
               key={layer.id}
-              animate={{
-                y: isHovered ? -35 : 0,
-              }}
-              transition={{ type: "spring", stiffness: 350, damping: 25 }}
-              className="absolute inset-x-0 bottom-0 cursor-pointer group"
+              animate={layer.motionConfig.animate(isHovered)}
+              transition={layer.motionConfig.transition}
+              className="absolute inset-x-0 bottom-0 pointer-events-none"
               style={{
                 top: `${layer.topOffset}px`,
                 zIndex: layer.zIndex,
               }}
-              onClick={() => handleOpen(layer.id)}
-              onMouseEnter={() => handleTabHover(layer.id)}
-              onMouseLeave={() => setHoveredFolderId(null)}
-              data-cursor="OPEN"
             >
               {/* Tab Header */}
               <div
@@ -134,28 +205,32 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
                   left: layer.left,
                   width: layer.width,
                 }}
-                className={`absolute top-0 h-11 sm:h-12 rounded-t-xl sm:rounded-t-2xl border-t border-l border-r font-mono text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-wider flex items-center justify-center transition-all truncate px-1 z-20 ${layer.bgTab} ${
-                  isHovered ? "border-purple-400/80 text-purple-100" : ""
+                onClick={() => handleOpen(layer.id)}
+                onMouseEnter={() => handleTabHover(layer.id)}
+                data-cursor={layer.cursorText}
+                data-cursor-color={layer.cursorColor}
+                className={`pointer-events-auto absolute top-0 h-11 sm:h-12 rounded-t-xl sm:rounded-t-2xl border-t border-l border-r font-mono text-[10px] sm:text-[11px] md:text-xs font-semibold tracking-wider flex items-center justify-center transition-all duration-300 truncate px-1 cursor-pointer z-30 ${layer.bgTab} ${
+                  isHovered ? layer.hoverBorder : ""
                 }`}
               >
                 {layer.label}
               </div>
 
-              {/* Body Card */}
-              <div
-                className={`absolute inset-x-0 top-10 sm:top-11 bottom-0 rounded-2xl sm:rounded-3xl backdrop-blur-xl border transition-all ${layer.bgCard} ${
-                  layer.isFront
-                    ? "border-white/20 group-hover:border-purple-400/50 p-6 sm:p-10 md:p-14 shadow-[0_25px_60px_rgba(0,0,0,0.8),0_1px_0_rgba(255,255,255,0.15)_inset] overflow-hidden"
-                    : "shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
-                } ${
-                  isHovered ? "border-purple-400/60 shadow-[0_-8px_30px_rgba(168,85,247,0.25)]" : "border-white/10"
-                }`}
-              >
-                {/* If Front Layer (ABOUT ME), render the Hero typography */}
-                {layer.isFront && (
+              {/* Card Body */}
+              {layer.isFront ? (
+                /* Front Layer (ABOUT ME / "My Portfolio" Hero Card) - 100% Solid Midnight Navy Blue */
+                <div
+                  onClick={() => handleOpen(layer.id)}
+                  onMouseEnter={() => handleTabHover(layer.id)}
+                  data-cursor="OPEN ABOUT ME"
+                  data-cursor-color="blue"
+                  className={`pointer-events-auto absolute inset-x-0 top-10 sm:top-11 bottom-0 rounded-2xl sm:rounded-3xl border border-blue-500/30 hover:border-blue-400/70 p-6 sm:p-10 md:p-14 ${layer.bgCard} shadow-[0_25px_60px_rgba(0,0,0,0.95),0_1px_0_rgba(59,130,246,0.2)_inset] overflow-hidden cursor-pointer transition-all duration-300 ${
+                    isHovered ? layer.hoverBorder : ""
+                  }`}
+                >
                   <div className="relative z-10 flex flex-col justify-between h-full space-y-6 sm:space-y-8">
-                    {/* Subtle glow accent */}
-                    <div className="absolute -top-12 right-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
+                    {/* Deep Blue Glow Flare */}
+                    <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/15 rounded-full blur-[100px] pointer-events-none" />
 
                     <div className="space-y-6 sm:space-y-8">
                       {/* Top Metadata Line */}
@@ -170,13 +245,13 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
 
                       {/* Role & Location Subtitle */}
                       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 text-xs sm:text-sm font-mono tracking-wider text-neutral-300 uppercase">
-                        <span>{personal.role.toUpperCase()}</span>
+                        <span>SOFTWARE INTEGRATION ENGINEER • MIDDLEWARE &amp; API DEVELOPER</span>
                         <span className="text-neutral-600">•</span>
                         <span>{personal.country.toUpperCase()}</span>
                         <span className="text-neutral-600">•</span>
-                        <span className="inline-flex items-center gap-1.5 text-purple-300">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          OPEN TO FREELANCE WORK
+                        <span className="inline-flex items-center gap-1.5 text-blue-300">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                          GLOBAL ITS GROUP
                         </span>
                       </div>
                     </div>
@@ -186,22 +261,29 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleOpen("projects");
+                          handleOpen("about");
                         }}
-                        className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-semibold tracking-wider text-purple-400 hover:text-purple-300 transition-colors uppercase group/btn"
-                        data-cursor="PROJECTS"
+                        data-cursor="OPEN ABOUT ME"
+                        data-cursor-color="blue"
+                        className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono font-semibold tracking-wider text-blue-400 hover:text-blue-300 transition-colors uppercase group/btn"
                       >
-                        <span>BROWSE &amp; IDENTITY PROJECTS</span>
+                        <span>VIEW DOSSIER &amp; PROFILE</span>
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1.5 transition-transform" />
                       </button>
                     </div>
                   </div>
-                )}
-              </div>
+                </div>
+              ) : (
+                /* Background Folder Sleeves */
+                <div
+                  className={`absolute inset-x-0 top-10 sm:top-11 bottom-0 rounded-2xl sm:rounded-3xl border border-white/10 ${layer.bgCard} shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-300 ${
+                    isHovered ? layer.hoverBorder : ""
+                  }`}
+                />
+              )}
             </motion.div>
           );
         })}
-
       </div>
 
       {/* Expanded Modal Window when any folder is clicked */}

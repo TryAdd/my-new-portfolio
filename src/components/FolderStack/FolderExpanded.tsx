@@ -55,6 +55,68 @@ export function FolderExpanded({
 
   if (!folder) return null;
 
+  const getFolderThemeClasses = (id: string) => {
+    switch (id) {
+      case "projects":
+        return {
+          text: "text-emerald-300",
+          border: "border-emerald-400/40",
+          bgActive: "bg-emerald-500/20 text-emerald-200 border-emerald-400/50",
+          pulse: "bg-emerald-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(16,185,129,0.15)]",
+          cardGradient: "from-[#0d1a15] via-[#08120e] to-[#040907]",
+        };
+      case "experience":
+        return {
+          text: "text-amber-300",
+          border: "border-amber-400/40",
+          bgActive: "bg-amber-500/20 text-amber-200 border-amber-400/50",
+          pulse: "bg-amber-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(245,158,11,0.15)]",
+          cardGradient: "from-[#1a140b] via-[#100d07] to-[#080603]",
+        };
+      case "skills":
+        return {
+          text: "text-violet-300",
+          border: "border-violet-400/40",
+          bgActive: "bg-violet-500/20 text-violet-200 border-violet-400/50",
+          pulse: "bg-violet-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(139,92,246,0.15)]",
+          cardGradient: "from-[#150d24] via-[#0d0817] to-[#06040b]",
+        };
+      case "design-lab":
+        return {
+          text: "text-rose-300",
+          border: "border-rose-400/40",
+          bgActive: "bg-rose-500/20 text-rose-200 border-rose-400/50",
+          pulse: "bg-rose-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(244,63,94,0.15)]",
+          cardGradient: "from-[#1a0d13] via-[#10080c] to-[#080406]",
+        };
+      case "contact":
+        return {
+          text: "text-sky-300",
+          border: "border-sky-400/40",
+          bgActive: "bg-sky-500/20 text-sky-200 border-sky-400/50",
+          pulse: "bg-sky-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(14,165,233,0.15)]",
+          cardGradient: "from-[#0b1624] via-[#070e17] to-[#04070b]",
+        };
+      case "about":
+      default:
+        return {
+          text: "text-blue-300",
+          border: "border-blue-400/40",
+          bgActive: "bg-blue-500/20 text-blue-200 border-blue-400/50",
+          pulse: "bg-blue-400",
+          shadow: "shadow-[0_30px_100px_rgba(0,0,0,0.95),0_0_80px_rgba(59,130,246,0.15)]",
+          cardGradient: "from-[#101726] via-[#0b101a] to-[#06080d]",
+        };
+    }
+  };
+
+  const theme = getFolderThemeClasses(folder.id);
+
   const renderContent = () => {
     switch (folder.id) {
       case "about":
@@ -104,7 +166,7 @@ export function FolderExpanded({
             mass: 0.8,
           }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-6xl max-h-[92vh] flex flex-col rounded-2xl sm:rounded-3xl bg-gradient-to-b from-[#121624] via-[#0d0f17] to-[#08090d] border border-white/20 shadow-[0_30px_100px_rgba(0,0,0,0.95),0_1px_0_rgba(255,255,255,0.15)_inset] overflow-hidden"
+          className={`relative w-full max-w-6xl max-h-[92vh] flex flex-col rounded-2xl sm:rounded-3xl bg-gradient-to-b ${theme.cardGradient} border border-white/20 ${theme.shadow} overflow-hidden`}
         >
           {/* Top Window Bar (Mac OS Finder / Digital Archive aesthetics) */}
           <div className="flex items-center justify-between px-5 sm:px-8 py-4 bg-neutral-900/90 border-b border-white/10 backdrop-blur-md shrink-0">
@@ -115,6 +177,7 @@ export function FolderExpanded({
                   onClick={handleClose}
                   className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group"
                   title="Close (ESC)"
+                  data-cursor="CLOSE"
                 >
                   <X className="w-2 h-2 text-red-950 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </button>
@@ -128,7 +191,7 @@ export function FolderExpanded({
                 <span className="text-neutral-600">/</span>
                 <span className="text-neutral-300">folders</span>
                 <span className="text-neutral-600">/</span>
-                <span className="text-purple-300 font-semibold uppercase">
+                <span className={`${theme.text} font-semibold uppercase`}>
                   {folder.number}_{folder.name.replace(/\s+/g, "_")}
                 </span>
               </div>
@@ -138,22 +201,25 @@ export function FolderExpanded({
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Folder Selector / Quick Jump on Desktop */}
               <div className="hidden lg:flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
-                {allFolders.map((f) => (
-                  <button
-                    key={f.id}
-                    onClick={() => {
-                      soundEffects.playTabHover();
-                      onNavigateFolder(f.id);
-                    }}
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-mono tracking-wider transition-all ${
-                      f.id === folder.id
-                        ? "bg-purple-500/20 text-purple-200 border border-purple-400/40 font-semibold"
-                        : "text-neutral-400 hover:text-white"
-                    }`}
-                  >
-                    {f.number}
-                  </button>
-                ))}
+                {allFolders.map((f) => {
+                  const fTheme = getFolderThemeClasses(f.id);
+                  return (
+                    <button
+                      key={f.id}
+                      onClick={() => {
+                        soundEffects.playTabHover();
+                        onNavigateFolder(f.id);
+                      }}
+                      className={`px-2.5 py-1 rounded-lg text-[10px] font-mono tracking-wider transition-all ${
+                        f.id === folder.id
+                          ? `${fTheme.bgActive} font-semibold`
+                          : "text-neutral-400 hover:text-white"
+                      }`}
+                    >
+                      {f.number}
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Close Button */}
@@ -170,9 +236,9 @@ export function FolderExpanded({
 
           {/* Folder Content Scrollable Body */}
           <div className="flex-1 overflow-y-auto p-6 sm:p-10 md:p-12">
-            {/* Ambient Corner Flare */}
+            {/* Ambient Corner Flare matching the active folder color */}
             <div
-              className="absolute top-12 right-0 w-96 h-96 rounded-full blur-[100px] pointer-events-none opacity-20 -z-10"
+              className="absolute top-12 right-0 w-96 h-96 rounded-full blur-[100px] pointer-events-none opacity-25 -z-10 transition-colors duration-500"
               style={{ backgroundColor: folder.accentColor }}
             />
 
@@ -187,8 +253,8 @@ export function FolderExpanded({
               <span className="hidden sm:inline">TYPE: {folder.fileType}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              <span className="text-purple-300">ACTIVE SESSION // 2026</span>
+              <span className={`w-1.5 h-1.5 rounded-full ${theme.pulse} animate-pulse`} />
+              <span className={theme.text}>ACTIVE SESSION // 2026</span>
             </div>
           </div>
         </motion.div>
