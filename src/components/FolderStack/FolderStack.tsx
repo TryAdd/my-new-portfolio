@@ -36,7 +36,7 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
     {
       id: "contact",
       label: "CONTACT ME",
-      cursorText: "OPEN CONTACT",
+      cursorText: "OPEN CONTACT ME",
       cursorColor: "sky",
       themeColor: "#0ea5e9",
       left: "83.5%",
@@ -80,7 +80,7 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
     {
       id: "skills",
       label: "SKILLS & TOOLS",
-      cursorText: "OPEN SKILLS",
+      cursorText: "OPEN SKILLS & TOOLS",
       cursorColor: "violet",
       themeColor: "#8b5cf6",
       left: "50.5%",

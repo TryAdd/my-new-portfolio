@@ -160,6 +160,25 @@ export function FolderExpanded({
     }
   };
 
+  const getFullCursorText = (f: FolderData) => {
+    switch (f.id) {
+      case "about":
+        return "OPEN ABOUT ME";
+      case "projects":
+        return "OPEN PROJECTS";
+      case "experience":
+        return "OPEN EXPERIENCE";
+      case "skills":
+        return "OPEN SKILLS & TOOLS";
+      case "design-lab":
+        return "OPEN CERTIFICATIONS";
+      case "contact":
+        return "OPEN CONTACT ME";
+      default:
+        return `OPEN ${f.name.toUpperCase()}`;
+    }
+  };
+
   return (
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto">
@@ -223,6 +242,7 @@ export function FolderExpanded({
                 const fTheme = getFolderThemeClasses(f.id);
                 const fColor = f.id === "about" ? "blue" : f.id === "projects" ? "emerald" : f.id === "experience" ? "amber" : f.id === "skills" ? "violet" : f.id === "design-lab" ? "rose" : "sky";
                 const label = getShortTabLabel(f);
+                const fullCursorText = getFullCursorText(f);
                 return (
                   <button
                     key={f.id}
@@ -230,7 +250,7 @@ export function FolderExpanded({
                       soundEffects.playTabHover();
                       onNavigateFolder(f.id);
                     }}
-                    data-cursor={`SWITCH TO ${label}`}
+                    data-cursor={fullCursorText}
                     data-cursor-color={fColor}
                     className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-[11px] font-mono tracking-wider transition-all whitespace-nowrap cursor-pointer ${
                       f.id === folder.id
