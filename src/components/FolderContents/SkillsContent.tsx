@@ -90,10 +90,12 @@ export function SkillsContent() {
               {category.skills.map((skill, idx) => (
                 <div
                   key={idx}
-                  className={`p-3 rounded-xl border transition-all ${
+                  data-cursor={`SKILL: ${skill.name}`}
+                  data-cursor-color="violet"
+                  className={`p-3 rounded-xl border transition-all cursor-pointer ${
                     skill.highlight
-                      ? "bg-blue-950/15 border-blue-500/25 hover:border-blue-400/40"
-                      : "bg-white/[0.02] border-white/[0.04] hover:border-white/[0.08]"
+                      ? "bg-violet-950/20 border-violet-500/30 hover:border-violet-400/60"
+                      : "bg-white/[0.02] border-white/[0.04] hover:border-violet-500/30"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">

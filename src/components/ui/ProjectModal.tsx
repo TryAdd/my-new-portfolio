@@ -85,7 +85,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 onClose();
               }}
               className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 text-xs font-mono text-neutral-300 hover:text-white transition-all"
-              data-cursor="CLOSE"
+              data-cursor="CLOSE [ESC]"
+              data-cursor-color="rose"
             >
               <X className="w-3.5 h-3.5" />
               <span>ESC</span>
@@ -118,7 +119,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* Featured Hero Image */}
-            <div className="relative w-full h-64 sm:h-96 rounded-xl overflow-hidden border border-white/10 bg-neutral-900">
+            <div 
+              data-cursor="VIEW ARCHITECTURE"
+              data-cursor-color="emerald"
+              className="relative w-full h-64 sm:h-96 rounded-xl overflow-hidden border border-white/10 bg-neutral-900 cursor-pointer"
+            >
               <img
                 src={project.featuredImage}
                 alt={project.title}
@@ -157,6 +162,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   {project.endpoints.map((ep, idx) => (
                     <div
                       key={idx}
+                      data-cursor="API ENDPOINT"
+                      data-cursor-color="blue"
                       className="p-3 rounded-xl bg-blue-950/15 border border-blue-500/20 font-mono text-xs text-blue-200 flex items-center gap-2"
                     >
                       <Terminal className="w-3.5 h-3.5 text-blue-400 shrink-0" />
@@ -178,6 +185,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   {project.highlights.map((highlight, idx) => (
                     <div
                       key={idx}
+                      data-cursor="HIGHLIGHT"
+                      data-cursor-color="emerald"
                       className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-start gap-3 text-xs sm:text-sm text-neutral-300"
                     >
                       <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
@@ -195,9 +204,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               </h3>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, idx) => (
-                  <Badge key={idx} variant="mono" size="sm">
-                    {tech}
-                  </Badge>
+                  <div key={idx} data-cursor={tech} data-cursor-color="blue">
+                    <Badge variant="mono" size="sm">
+                      {tech}
+                    </Badge>
+                  </div>
                 ))}
               </div>
             </div>
@@ -212,6 +223,8 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => soundEffects.playClick()}
+                    data-cursor="VISIT LINK"
+                    data-cursor-color="emerald"
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs uppercase tracking-wider font-semibold shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />

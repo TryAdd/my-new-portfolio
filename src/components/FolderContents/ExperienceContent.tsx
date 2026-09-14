@@ -56,7 +56,8 @@ export function ExperienceContent() {
               <button
                 onClick={() => toggleExpand(exp.id)}
                 className="w-full text-left p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer"
-                data-cursor="INSPECT"
+                data-cursor={isExpanded ? "COLLAPSE LOG" : "EXPAND LOG"}
+                data-cursor-color="amber"
               >
                 <div className="flex items-start sm:items-center gap-4">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 border border-blue-400/20 text-blue-300 font-mono text-xs font-bold">

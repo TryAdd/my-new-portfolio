@@ -48,9 +48,11 @@ export function ProjectsContent() {
                 soundEffects.playTabHover();
                 setSelectedCategory(cat);
               }}
+              data-cursor={`FILTER: ${cat === "Enterprise ERP & HR" ? "ERP & HR" : cat === "Real Estate & Billing" ? "REAL ESTATE" : cat === "Enterprise Asset Ops" ? "ASSETS" : cat === "Backend & Full-Stack" ? "BACKEND" : cat}`}
+              data-cursor-color="emerald"
               className={`px-3 py-1 rounded-lg text-[11px] font-mono transition-all ${
                 selectedCategory === cat
-                  ? "bg-blue-500/20 text-blue-200 border border-blue-400/40 shadow-[0_0_12px_rgba(59,130,246,0.25)] font-semibold"
+                  ? "bg-emerald-500/20 text-emerald-200 border border-emerald-400/40 shadow-[0_0_12px_rgba(16,185,129,0.25)] font-semibold"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
@@ -66,8 +68,9 @@ export function ProjectsContent() {
           <div
             key={project.id}
             onClick={() => handleProjectClick(project)}
-            data-cursor="VIEW"
-            className="group relative flex flex-col justify-between rounded-2xl bg-neutral-900/60 hover:bg-neutral-900/90 border border-white/[0.08] hover:border-blue-400/40 p-5 sm:p-6 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] cursor-pointer"
+            data-cursor="OPEN CASE STUDY"
+            data-cursor-color="emerald"
+            className="group relative flex flex-col justify-between rounded-2xl bg-neutral-900/60 hover:bg-neutral-900/90 border border-white/[0.08] hover:border-emerald-400/50 p-5 sm:p-6 transition-all duration-300 hover:shadow-[0_15px_35px_rgba(0,0,0,0.6)] cursor-pointer"
           >
             {/* Top Row: Year, Category badge & Arrow */}
             <div className="space-y-4 mb-4">

@@ -154,8 +154,9 @@ export function ContactContent() {
 
             <button
               type="submit"
-              data-cursor="TRANSMIT"
-              className="w-full py-3.5 px-6 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(37,99,235,0.4)] hover:shadow-[0_0_35px_rgba(37,99,235,0.6)] transition-all duration-300"
+              data-cursor="TRANSMIT MESSAGE"
+              data-cursor-color="sky"
+              className="w-full py-3.5 px-6 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(14,165,233,0.4)] hover:shadow-[0_0_35px_rgba(14,165,233,0.6)] transition-all duration-300 cursor-pointer"
             >
               <Send className="w-4 h-4" />
               <span>START A CONVERSATION</span>
@@ -181,15 +182,16 @@ export function ContactContent() {
             {/* Email Row */}
             <div className="flex items-center justify-between p-3.5 rounded-xl bg-neutral-950 border border-white/10">
               <div className="flex items-center gap-2.5 truncate mr-2">
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <span className="text-xs sm:text-sm font-mono text-blue-200 truncate">
+                <Mail className="w-4 h-4 text-sky-400 shrink-0" />
+                <span className="text-xs sm:text-sm font-mono text-sky-200 truncate">
                   {personal.contactEmail}
                 </span>
               </div>
               <button
                 onClick={handleCopyEmail}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-mono text-neutral-200 shrink-0 transition-all"
-                data-cursor="COPY"
+                data-cursor="COPY EMAIL"
+                data-cursor-color="sky"
               >
                 {copied ? (
                   <>
@@ -208,7 +210,7 @@ export function ContactContent() {
             {/* Phone Row */}
             <div className="flex items-center justify-between p-3.5 rounded-xl bg-neutral-950 border border-white/10">
               <div className="flex items-center gap-2.5 truncate mr-2">
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
+                <Phone className="w-4 h-4 text-sky-400 shrink-0" />
                 <span className="text-xs sm:text-sm font-mono text-neutral-200 truncate">
                   {personal.phone}
                 </span>
@@ -216,7 +218,8 @@ export function ContactContent() {
               <button
                 onClick={handleCopyPhone}
                 className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-mono text-neutral-200 shrink-0 transition-all"
-                data-cursor="COPY"
+                data-cursor="COPY PHONE"
+                data-cursor-color="sky"
               >
                 {phoneCopied ? (
                   <>
@@ -246,8 +249,9 @@ export function ContactContent() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => soundEffects.playClick()}
-                  data-cursor="VISIT"
-                  className="flex items-center justify-between p-3 rounded-xl bg-neutral-950/60 hover:bg-blue-950/20 border border-white/[0.04] hover:border-blue-400/30 text-neutral-300 hover:text-white transition-all group"
+                  data-cursor={`VISIT ${social.platform.toUpperCase()}`}
+                  data-cursor-color="sky"
+                  className="flex items-center justify-between p-3 rounded-xl bg-neutral-950/60 hover:bg-sky-950/20 border border-white/[0.04] hover:border-sky-400/30 text-neutral-300 hover:text-white transition-all group"
                 >
                   <div className="flex items-center gap-3">
                     <div className="text-blue-400">

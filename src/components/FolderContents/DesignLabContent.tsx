@@ -60,13 +60,15 @@ export function DesignLabContent() {
                 {groupCerts.map((cert, cIdx) => (
                   <div
                     key={cIdx}
-                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-blue-500/30 transition-all flex flex-col gap-1"
+                    data-cursor={`ACCREDITATION: ${cert.issuer}`}
+                    data-cursor-color="rose"
+                    className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.04] hover:border-rose-400/50 hover:bg-rose-950/20 transition-all flex flex-col gap-1 cursor-pointer"
                   >
                     <div className="flex items-start gap-2 text-xs sm:text-sm font-medium text-white">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-rose-400 shrink-0 mt-0.5" />
                       <span>{cert.title}</span>
                     </div>
-                    <span className="text-[11px] font-mono text-blue-300 pl-5.5">
+                    <span className="text-[11px] font-mono text-rose-300 pl-5.5">
                       Issuer: {cert.issuer}
                     </span>
                   </div>
