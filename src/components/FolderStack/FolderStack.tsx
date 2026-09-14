@@ -168,10 +168,10 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
   ];
 
   return (
-    <section className="relative w-full max-w-5xl mx-auto px-3 sm:px-6 pt-2 pb-20 select-none">
+    <section className="relative w-full max-w-5xl mx-auto px-3 sm:px-6 pt-2 pb-16 sm:pb-20 select-none">
       {/* Dynamic Ambient lighting behind folder stack */}
       <div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full blur-[140px] pointer-events-none -z-10 transition-colors duration-500 opacity-20"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] sm:w-[700px] h-[300px] sm:h-[400px] rounded-full blur-[100px] sm:blur-[140px] pointer-events-none -z-10 transition-colors duration-500 opacity-20"
         style={{
           backgroundColor: hoveredFolderId 
             ? stackLayers.find(l => l.id === hoveredFolderId)?.themeColor || "#3b82f6"
@@ -179,9 +179,86 @@ export function FolderStack({ activeFolderId, setActiveFolderId }: FolderStackPr
         }}
       />
 
-      {/* Desktop Stacked Folder System */}
+      {/* 1. Mobile Phone Folder Deck (Visible on small screens < 768px) */}
+      <div className="block md:hidden space-y-4">
+        {/* Main "My Portfolio" Hero Card */}
+        <div
+          onClick={() => handleOpen("about")}
+          className="relative w-full rounded-2xl bg-[#080d1a] bg-gradient-to-b from-[#0c1629] via-[#080d1a] to-[#04070d] border border-blue-500/30 p-5 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.8)] overflow-hidden cursor-pointer active:scale-[0.99] transition-transform"
+        >
+          {/* Subtle Blue Glow Flare */}
+          <div className="absolute top-0 right-0 w-48 h-48 bg-blue-600/15 rounded-full blur-[60px] pointer-events-none" />
+
+          <div className="relative z-10 space-y-5">
+            {/* Top Metadata */}
+            <div className="flex items-center justify-between text-[10px] font-mono tracking-wider text-neutral-400 uppercase">
+              <span>{personal.name.toUpperCase()}</span>
+              <span className="text-blue-300">• {personal.copyrightYear}</span>
+            </div>
+
+            {/* Title */}
+            <div>
+              <h2 className="text-4xl sm:text-5xl font-serif italic text-white font-normal tracking-tight leading-none mb-2">
+                My Portfolio
+              </h2>
+              <div className="flex flex-wrap items-center gap-1.5 text-[11px] font-mono text-neutral-300 uppercase">
+                <span>SOFTWARE INTEGRATION ENGINEER</span>
+                <span className="text-neutral-600">•</span>
+                <span className="text-blue-300">GLOBAL ITS GROUP</span>
+              </div>
+            </div>
+
+            {/* Action prompt */}
+            <div className="pt-2 flex items-center justify-between border-t border-white/[0.08]">
+              <span className="text-xs font-mono font-semibold text-blue-400 tracking-wider uppercase">
+                VIEW DOSSIER &amp; PROFILE
+              </span>
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500/20 text-blue-300">
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 5 Mobile Quick Access Folder Tiles */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+          {stackLayers
+            .filter((l) => !l.isFront)
+            .reverse()
+            .map((layer) => (
+              <div
+                key={layer.id}
+                onClick={() => handleOpen(layer.id)}
+                className={`flex items-center justify-between p-4 rounded-xl border transition-all active:scale-[0.98] cursor-pointer ${layer.bgCard} ${layer.hoverBorder}`}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className="w-2.5 h-2.5 rounded-full"
+                    style={{ backgroundColor: layer.themeColor }}
+                  />
+                  <span className="font-mono text-xs font-semibold tracking-wider text-neutral-200">
+                    {layer.label}
+                  </span>
+                </div>
+
+                <span
+                  className="text-[10px] font-mono font-medium px-2 py-0.5 rounded border"
+                  style={{
+                    color: layer.themeColor,
+                    borderColor: `${layer.themeColor}40`,
+                    backgroundColor: `${layer.themeColor}15`,
+                  }}
+                >
+                  OPEN
+                </span>
+              </div>
+            ))}
+        </div>
+      </div>
+
+      {/* 2. Desktop Stacked Folder System (Visible on screens >= 768px) */}
       <div 
-        className="relative w-full min-h-[480px] sm:min-h-[540px] md:min-h-[580px]"
+        className="hidden md:block relative w-full min-h-[480px] sm:min-h-[540px] md:min-h-[580px]"
         onMouseLeave={() => setHoveredFolderId(null)}
       >
         {/* Render all 6 layers uniformly */}

@@ -29,7 +29,8 @@ export function ContactContent() {
     subject: "Enterprise Integration & API Consultation",
     message: ""
   });
-  const [isSent, setIsSent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "fallback" | "error">("idle");
 
   const handleCopyEmail = () => {
     soundEffects.playClick();
@@ -45,19 +46,60 @@ export function ContactContent() {
     setTimeout(() => setPhoneCopied(false), 2500);
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     soundEffects.playClick();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
 
-    const mailtoUrl = `mailto:${personal.contactEmail}?subject=${encodeURIComponent(
-      `[Portfolio OS] ${formData.subject} - from ${formData.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
+    try {
+      // Direct async dispatch to Ahmed Hisham's inbox via FormSubmit API
+      const response = await fetch(`https://formsubmit.co/ajax/${personal.contactEmail}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: `[Portfolio Inquiry] ${formData.subject} - from ${formData.name}`,
+          message: formData.message,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
 
-    window.location.href = mailtoUrl;
-    setIsSent(true);
-    setTimeout(() => setIsSent(false), 4000);
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "Enterprise Integration & API Consultation",
+          message: "",
+        });
+      } else {
+        // Fallback to mailto if external relay is blocked
+        setSubmitStatus("fallback");
+        const mailtoUrl = `mailto:${personal.contactEmail}?subject=${encodeURIComponent(
+          `[Portfolio OS] ${formData.subject} - from ${formData.name}`
+        )}&body=${encodeURIComponent(
+          `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+        )}`;
+        window.location.href = mailtoUrl;
+      }
+    } catch {
+      // Offline / Network fallback
+      setSubmitStatus("fallback");
+      const mailtoUrl = `mailto:${personal.contactEmail}?subject=${encodeURIComponent(
+        `[Portfolio OS] ${formData.subject} - from ${formData.name}`
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      )}`;
+      window.location.href = mailtoUrl;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -91,7 +133,10 @@ export function ContactContent() {
               <MessageSquare className="w-3.5 h-3.5 text-blue-400" />
               <span>TRANSMIT INQUIRY</span>
             </div>
-            <span className="text-[10px] font-mono text-blue-400">DIRECT RELAY</span>
+            <span className="text-[10px] font-mono text-sky-400 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+              DIRECT INBOX RELAY
+            </span>
           </div>
 
           <form onSubmit={handleSendMessage} className="space-y-4">
@@ -106,7 +151,7 @@ export function ContactContent() {
                   placeholder="e.g. Elena Vance"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-blue-400/60 transition-colors placeholder:text-neutral-600 font-sans"
+                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-sky-400/60 transition-colors placeholder:text-neutral-600 font-sans"
                 />
               </div>
 
@@ -120,7 +165,7 @@ export function ContactContent() {
                   placeholder="elena@enterprise.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-blue-400/60 transition-colors placeholder:text-neutral-600 font-sans"
+                  className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-sky-400/60 transition-colors placeholder:text-neutral-600 font-sans"
                 />
               </div>
             </div>
@@ -134,7 +179,7 @@ export function ContactContent() {
                 required
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-blue-400/60 transition-colors placeholder:text-neutral-600 font-sans"
+                className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-sky-400/60 transition-colors placeholder:text-neutral-600 font-sans"
               />
             </div>
 
@@ -148,24 +193,44 @@ export function ContactContent() {
                 placeholder="Describe your ERP environment, API specifications, offline synchronization needs, or integration roadmap..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-blue-400/60 transition-colors placeholder:text-neutral-600 font-sans resize-none"
+                className="w-full px-4 py-2.5 rounded-xl bg-neutral-950/80 border border-white/10 text-neutral-200 text-sm focus:outline-none focus:border-sky-400/60 transition-colors placeholder:text-neutral-600 font-sans resize-none"
               />
             </div>
 
             <button
               type="submit"
+              disabled={isSubmitting}
               data-cursor="TRANSMIT MESSAGE"
               data-cursor-color="sky"
-              className="w-full py-3.5 px-6 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(14,165,233,0.4)] hover:shadow-[0_0_35px_rgba(14,165,233,0.6)] transition-all duration-300 cursor-pointer"
+              className="w-full py-3.5 px-6 rounded-xl bg-sky-600 hover:bg-sky-500 disabled:opacity-60 text-white font-mono text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 shadow-[0_0_25px_rgba(14,165,233,0.4)] hover:shadow-[0_0_35px_rgba(14,165,233,0.6)] transition-all duration-300 cursor-pointer"
             >
-              <Send className="w-4 h-4" />
-              <span>START A CONVERSATION</span>
+              {isSubmitting ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>TRANSMITTING INQUIRY...</span>
+                </>
+              ) : (
+                <>
+                  <Send className="w-4 h-4" />
+                  <span>START A CONVERSATION</span>
+                </>
+              )}
             </button>
 
-            {isSent && (
-              <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs font-mono flex items-center justify-center gap-2">
-                <Check className="w-3.5 h-3.5" />
-                <span>Opening your email client...</span>
+            {submitStatus === "success" && (
+              <div className="p-4 rounded-xl bg-emerald-950/50 border border-emerald-500/40 text-emerald-200 text-xs font-mono flex items-start gap-3 animate-fade-in">
+                <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-semibold text-emerald-300">Transmission Dispatched Successfully!</div>
+                  <div className="text-neutral-300 mt-0.5">Your inquiry has been delivered directly to Ahmed Hisham&apos;s inbox ({personal.contactEmail}). He will reach out to you shortly.</div>
+                </div>
+              </div>
+            )}
+
+            {submitStatus === "fallback" && (
+              <div className="p-3 rounded-xl bg-blue-950/40 border border-blue-500/30 text-blue-200 text-xs font-mono flex items-center gap-2">
+                <Mail className="w-4 h-4 text-blue-400" />
+                <span>Opening your email client to complete dispatch...</span>
               </div>
             )}
           </form>

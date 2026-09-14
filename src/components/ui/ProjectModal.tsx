@@ -44,7 +44,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto">
+      <div className="fixed inset-0 z-[200] flex items-center justify-center p-0 sm:p-6 md:p-10 overflow-y-auto">
         {/* Backdrop blur overlay */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -63,11 +63,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.92, y: 20 }}
           transition={{ type: "spring", damping: 30, stiffness: 350 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl bg-neutral-950 border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.95)] text-neutral-200"
+          className="relative w-full h-full sm:h-auto max-w-4xl sm:max-h-[90vh] overflow-y-auto rounded-none sm:rounded-2xl bg-neutral-950 border-0 sm:border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.95)] text-neutral-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Top Window Bar */}
-          <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-4 bg-neutral-900/95 border-b border-white/10 backdrop-blur-md">
+          <div className="sticky top-0 z-20 flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 bg-neutral-900/95 border-b border-white/10 backdrop-blur-md">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <button
@@ -75,24 +75,24 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     soundEffects.playClick();
                     onClose();
                   }}
-                  className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group"
+                  className="w-5 h-5 sm:w-3.5 sm:h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group cursor-pointer"
                   title="Close (ESC)"
                   data-cursor="CLOSE"
                   data-cursor-color="rose"
                 >
-                  <X className="w-2 h-2 text-red-950 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <X className="w-3 h-3 sm:w-2 sm:h-2 text-white sm:text-red-950 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" />
                 </button>
-                <span className="w-3.5 h-3.5 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-3.5 h-3.5 rounded-full bg-emerald-500/80 inline-block" />
+                <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-amber-500/80 inline-block" />
+                <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-500/80 inline-block" />
               </div>
-              <span className="text-xs font-mono text-neutral-400 pl-2 border-l border-white/10">
-                INTEGRATION DELIVERABLE // {project.id.toUpperCase()}
+              <span className="text-[11px] sm:text-xs font-mono text-neutral-400 pl-2 border-l border-white/10 truncate max-w-[200px] sm:max-w-none">
+                INTEGRATION // {project.id.toUpperCase()}
               </span>
             </div>
           </div>
 
           {/* Project Content Body */}
-          <div className="p-6 sm:p-10 space-y-8">
+          <div className="p-4 sm:p-10 space-y-6 sm:space-y-8 pb-16 sm:pb-10">
             {/* Header Metadata */}
             <div className="space-y-4">
               <div className="flex flex-wrap items-center gap-2">

@@ -181,7 +181,7 @@ export function FolderExpanded({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-6 md:p-10 overflow-y-auto">
         {/* Dimmed & Blurred Background Overlay */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -204,28 +204,28 @@ export function FolderExpanded({
             mass: 0.8,
           }}
           onClick={(e) => e.stopPropagation()}
-          className={`relative w-full max-w-6xl max-h-[92vh] flex flex-col rounded-2xl sm:rounded-3xl bg-gradient-to-b ${theme.cardGradient} border border-white/20 ${theme.shadow} overflow-hidden`}
+          className={`relative w-full h-full sm:h-auto sm:max-h-[92vh] max-w-6xl flex flex-col rounded-none sm:rounded-3xl bg-gradient-to-b ${theme.cardGradient} border-0 sm:border border-white/20 ${theme.shadow} overflow-hidden`}
         >
           {/* Top Window Bar (Mac OS Finder / Digital Archive aesthetics) */}
-          <div className="flex flex-wrap items-center justify-between gap-3 px-5 sm:px-8 py-3.5 sm:py-4 bg-neutral-900/90 border-b border-white/10 backdrop-blur-md shrink-0">
+          <div className="flex items-center justify-between gap-2 px-3 sm:px-8 py-3 sm:py-4 bg-neutral-900/95 border-b border-white/10 backdrop-blur-md shrink-0">
             {/* Left: Window Traffic Lights & Directory Path */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 <button
                   onClick={handleClose}
-                  className="w-3.5 h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group cursor-pointer"
+                  className="w-5 h-5 sm:w-3.5 sm:h-3.5 rounded-full bg-red-500 hover:bg-red-600 transition-colors flex items-center justify-center group cursor-pointer"
                   title="Close (ESC)"
                   data-cursor="CLOSE"
                   data-cursor-color="rose"
                 >
-                  <X className="w-2 h-2 text-red-950 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <X className="w-3 h-3 sm:w-2 sm:h-2 text-white sm:text-red-950 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity" />
                 </button>
-                <span className="w-3.5 h-3.5 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-3.5 h-3.5 rounded-full bg-emerald-500/80 inline-block" />
+                <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-amber-500/80 inline-block" />
+                <span className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-emerald-500/80 inline-block" />
               </div>
 
               {/* Breadcrumb path */}
-              <div className="hidden sm:flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-neutral-400 pl-3 border-l border-white/10">
+              <div className="hidden md:flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-neutral-400 pl-3 border-l border-white/10">
                 <span className="text-neutral-500">workspace</span>
                 <span className="text-neutral-600">/</span>
                 <span className="text-neutral-300">folders</span>
@@ -237,7 +237,7 @@ export function FolderExpanded({
             </div>
 
             {/* Right: Quick Tab Switcher */}
-            <div className="flex items-center gap-1 overflow-x-auto max-w-full p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
+            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar scroll-smooth flex-nowrap max-w-[calc(100vw-120px)] sm:max-w-full p-1 rounded-xl bg-white/[0.04] border border-white/[0.06]">
               {allFolders.map((f) => {
                 const fTheme = getFolderThemeClasses(f.id);
                 const fColor = f.id === "about" ? "blue" : f.id === "projects" ? "emerald" : f.id === "experience" ? "amber" : f.id === "skills" ? "violet" : f.id === "design-lab" ? "rose" : "sky";
@@ -252,7 +252,7 @@ export function FolderExpanded({
                     }}
                     data-cursor={fullCursorText}
                     data-cursor-color={fColor}
-                    className={`px-2.5 sm:px-3 py-1 rounded-lg text-[10px] sm:text-[11px] font-mono tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                    className={`px-2 sm:px-3 py-1 rounded-lg text-[10px] sm:text-[11px] font-mono tracking-wider transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                       f.id === folder.id
                         ? `${fTheme.bgActive} font-semibold shadow-sm`
                         : "text-neutral-400 hover:text-white hover:bg-white/[0.04]"
@@ -266,10 +266,10 @@ export function FolderExpanded({
           </div>
 
           {/* Folder Content Scrollable Body */}
-          <div className="flex-1 overflow-y-auto p-6 sm:p-10 md:p-12">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-10 md:p-12 pb-20 sm:pb-12">
             {/* Ambient Corner Flare matching the active folder color */}
             <div
-              className="absolute top-12 right-0 w-96 h-96 rounded-full blur-[100px] pointer-events-none opacity-25 -z-10 transition-colors duration-500"
+              className="absolute top-12 right-0 w-60 sm:w-96 h-60 sm:h-96 rounded-full blur-[80px] sm:blur-[100px] pointer-events-none opacity-25 -z-10 transition-colors duration-500"
               style={{ backgroundColor: folder.accentColor }}
             />
 
